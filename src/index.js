@@ -1,0 +1,34 @@
+const express = require('express');
+const router = require('./routes/');
+const app = express();
+
+// Settings
+app.set('port', process.env.PORT || 3000);
+
+// Middlewares
+app.use(express.json());
+
+// Routes
+app.use(require('./routes/pruebas'));
+app.use(require('./routes/alergias'));
+app.use(require('./routes/especialidades'));
+app.use(require('./routes/enfermedades'));
+app.use(require('./routes/cirugias'));
+app.use(require('./routes/pacientes'));
+app.use(require('./routes/pacientes_enfermedades'));
+app.use(require('./routes/pacientes_alergias'));
+app.use(require('./routes/pacientes_cirugias'));
+app.use(require('./routes/servicios'));
+app.use(require('./routes/medicos'));
+app.use(require('./routes/servicios_medicos'));
+app.use(require('./routes/consultas'));
+app.use(require('./routes/covid'));
+
+router.get('*', (req, res) => {
+    res.status(404).send({ message: "Route not found" })
+});
+
+// Starting the server
+app.listen(app.get('port'), () => {
+    console.log(`Server on port ${app.get('port')}`);
+});
