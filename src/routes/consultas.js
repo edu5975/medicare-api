@@ -90,7 +90,7 @@ router.post('/pacientes/:idPacientes/consultas', (req, res) => {
         if (!err) {
             res.status(200).send({
                 status: 'Consulta Saved',
-                alergias: {
+                consultas: {
                     id: rows.insertId,
                     idPaciente,
                     idEspecialidad,

@@ -55,7 +55,7 @@ Rutas para covid
     /medicos/:id/covid (get)
 
 Rutas para recetas
-/recetas (get)
-/recetas/:id (get, delete)
-/consultas/:idConsulta/recetas (get, post)
-/consultas/:idConsulta/recetas/:idRecetas (get, put, delete)
+    /recetas (get)
+    /recetas/:id (get, delete)
+    /consultas/:idConsulta/recetas (get)
+    /consultas/:idConsulta/recetas/:idRecetas (get, put, delete)

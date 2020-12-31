@@ -193,6 +193,12 @@ insert into covid(idPaciente, idMedico, estado, fecha) values
 (1,2,'Confirmado',current_date),
 (1,1,'Curado',current_date);
 
-select c.id, c.idPaciente, c.idMedico, c.estado, c.fecha
-from covid c
-join medicos m on c.idMedico = m.id
+insert into recetas(idConsulta, idMedico, descripcion,pdf) values
+(1,1,'Debes hacer esto','url del pdf'),
+(2,1,'Debes hacer esto','url del pdf');
+
+select *
+from recetas r
+join consultas c on r.idConsulta = c.id
+join pacientes p on c.idPaciente = p.id
+
