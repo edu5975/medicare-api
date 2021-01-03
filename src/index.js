@@ -1,12 +1,21 @@
 const express = require('express');
 const router = require('./routes/');
+const body_parser = require('body-parser');
+const multer = require('multer');
+const cors = require('cors')
+const upload = multer();
 const app = express();
+
+app.use(cors());
 
 // Settings
 app.set('port', process.env.PORT || 3000);
 
 // Middlewares
-app.use(express.json());
+app.use(body_parser.json());
+app.use(body_parser.urlencoded({ extended: true }));
+app.use(upload.array());
+app.use(express.static('public'));
 
 // Routes
 app.use(require('./routes/pruebas'));
