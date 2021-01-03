@@ -197,8 +197,7 @@ insert into recetas(idConsulta, idMedico, descripcion,pdf) values
 (1,1,'Debes hacer esto','url del pdf'),
 (2,1,'Debes hacer esto','url del pdf');
 
-select *
-from recetas r
-join consultas c on r.idConsulta = c.id
-join pacientes p on c.idPaciente = p.id
+select id
+from pacientes
+where user = 'edu5975' and password = 'edu5975';
 

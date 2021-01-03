@@ -24,6 +24,7 @@ app.use(require('./routes/servicios_medicos'));
 app.use(require('./routes/consultas'));
 app.use(require('./routes/covid'));
 app.use(require('./routes/recetas'));
+app.use(require('./routes/acceso'));
 
 router.get('*', (req, res) => {
     res.status(404).send({ message: "Route not found" })

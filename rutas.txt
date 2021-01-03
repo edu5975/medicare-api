@@ -59,3 +59,7 @@ Rutas para recetas
 /recetas/:id (get, delete)
 /consultas/:idConsulta/recetas (get)
 /consultas/:idConsulta/recetas/:idRecetas (get, put, delete)
+
+Rutas para acceso
+/login (post)
+/logout (post)
