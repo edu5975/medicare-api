@@ -83,8 +83,8 @@ router.post('/pacientes/:idPacientes/consultas', (req, res) => {
     const { idPaciente } = req.params;
     const { idEspecialidad, sintomas, fotosvideos, estado } = req.body;
     const query = `
-    insert into consultas(idPaciente, idEspecialidad, sintomas, fotosvideos, estado) values
-    (?,?,?,?,?)
+    insert into consultas(idPaciente, idEspecialidad, sintomas, fotosvideos, estado, fecha) values
+    (?,?,?,?,?,current_date)
   `;
     mysqlConnection.query(query, [idPaciente, idEspecialidad, sintomas, fotosvideos, estado], (err, rows, fields) => {
         if (!err) {

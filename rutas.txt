@@ -63,3 +63,14 @@ Rutas para recetas
 Rutas para acceso
 /login (post)
 /logout (post)
+
+
+
+
+Rutas para los medicamentos
+/medicamentos (get, post)
+/medicamentos/:id (get, put, delete)
+
+Rutas para recetas_medicamentos
+/recetas/:id/medicamentos (get)
+/recetas/:idRecetas/medicamentos/:idMedicamentos (get, post, delete)

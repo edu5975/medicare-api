@@ -118,6 +118,7 @@ create table consultas(
     sintomas text,
     fotosvideos varchar(100),
     estado varchar(20),
+    fecha date,
     constraint foreign key (idPaciente) references pacientes(id),
     constraint foreign key (idEspecialidad) references especialidades(id)
 );
@@ -183,21 +184,21 @@ values
 
 insert into servicios_medicos(idMedicos,idServicios,costo) values (1,3,1000),(1,1,3200),(1,20,200),(1,45,400);
 
-insert into consultas(idPaciente, idEspecialidad, sintomas, fotosvideos, estado) values
-(1,1,'Me siento mal','url de la foto o video','Sin responder'),
-(1,2,'Me siento mal','url de la foto o video','Sin responder'),
-(1,3,'Me siento mal','url de la foto o video','Sin responder');
+insert into consultas(idPaciente, idEspecialidad, sintomas, fotosvideos, estado,fecha) values
+(1,1,'Me siento mal 1','url de la foto o video','Sin responder',curdate()),
+(1,2,'Me siento mal 2','url de la foto o video','Sin responder',curdate()),
+(1,3,'Me siento mal 3','url de la foto o video','Sin responder',curdate()),
+(2,1,'Me siento mal 4','url de la foto o video','Sin responder',curdate()),
+(2,2,'Me siento mal 5','url de la foto o video','Sin responder',curdate()),
+(2,3,'Me siento mal 6','url de la foto o video','Sin responder',curdate());
 
 insert into covid(idPaciente, idMedico, estado, fecha) values
-(1,1,'Sospechoso',current_date),
-(1,2,'Confirmado',current_date),
-(1,1,'Curado',current_date);
+(1,1,'Sospechoso',curdate()),
+(1,2,'Confirmado',curdate()),
+(1,1,'Curado',curdate());
 
 insert into recetas(idConsulta, idMedico, descripcion,pdf) values
 (1,1,'Debes hacer esto','url del pdf'),
 (2,1,'Debes hacer esto','url del pdf');
 
-select id
-from pacientes
-where user = 'edu5975' and password = 'edu5975';
 
