@@ -124,8 +124,7 @@ create table consultas(
 );
 
 create table recetas(
-    id integer auto_increment primary key,
-    idConsulta integer,
+    idConsulta integer primary key ,
     idMedico integer,
     descripcion text,
     pdf varchar(20),
@@ -145,7 +144,7 @@ create table recetas_medicamentos(
     idRecetas integer,
     idMedicamentos integer,
     constraint primary key (idRecetas,idMedicamentos),
-    constraint foreign key (idRecetas) references recetas(id),
+    constraint foreign key (idRecetas) references recetas(idConsulta),
     constraint foreign key (idMedicamentos) references medicamentos(id)
 );
 
