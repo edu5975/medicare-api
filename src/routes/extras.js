@@ -11,8 +11,12 @@ router.get('/images/:nombre', (req, res) => {
 });
 
 // POST imagen
-router.post('/images', upload.single('image'), (req, res) => {
-    res.status(200).send({ message: "Save" })
+router.post('/images', (req, res) => {
+    upload.single('image');
+    res.status(200).send({
+        message: "Save",
+        url: upload.url
+    })
 });
 
 //NADA

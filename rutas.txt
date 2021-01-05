@@ -64,9 +64,6 @@ Rutas para acceso
 /login (post)
 /logout (post)
 
-
-
-
 Rutas para los medicamentos
 /medicamentos (get, post)
 /medicamentos/:id (get, put, delete)
