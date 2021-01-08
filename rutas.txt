@@ -71,3 +71,7 @@ Rutas para los medicamentos
 Rutas para recetas_medicamentos
 /recetas/:id/medicamentos (get)
 /recetas/:idRecetas/medicamentos/:idMedicamentos (get, post, delete)
+
+
+
+ACTUALIZAR CONSULTA AL PONER UNA RECETA A CON RESPUESTA

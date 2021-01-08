@@ -85,7 +85,8 @@ router.get('/pacientes/:idPacientes/consultas/:idConsultas', (req, res) => {
 // INSERT una consulta
 router.post('/pacientes/:idPacientes/consultas', (req, res) => {
     const { idPaciente } = req.params;
-    const { idEspecialidad, sintomas, fotosvideos, estado } = req.body;
+    const { idEspecialidad, sintomas, fotosvideos } = req.body;
+    const estado = "Sin responder"
     const query = `
     insert into consultas(idPaciente, idEspecialidad, sintomas, fotosvideos, estado, fecha) values
     (?,?,?,?,?,current_date)

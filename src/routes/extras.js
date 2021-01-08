@@ -19,6 +19,12 @@ router.post('/images', (req, res) => {
     })
 });
 
+//POST get
+router.post('/post', (req, res) => {
+    res.status(200).send(req.body)
+});
+
+
 //NADA
 router.get('*', (req, res) => {
     res.status(404).send({ message: "Route not found" })

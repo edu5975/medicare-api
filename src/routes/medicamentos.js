@@ -1,4 +1,5 @@
 const express = require('express');
+const upload = require('../controller/multerController.js');
 const router = express.Router();
 
 const mysqlConnection = require('../database.js');
@@ -46,7 +47,10 @@ router.delete('/medicamentos/:id', (req, res) => {
 
 // INSERT una medicamentos
 router.post('/medicamentos', (req, res) => {
-    const { nombre, descripcion, costo, foto } = req.body;
+    upload.single('foto');
+    foto = upload.url;
+
+    const { nombre, descripcion, costo } = req.body;
     const query = `
     insert into medicamentos(nombre, descripcion, costo, foto ) values (?,?,?,?);
   `;

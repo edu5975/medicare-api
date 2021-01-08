@@ -175,8 +175,8 @@ insert into cirugias(descripcion) values
 
 insert into pacientes(nombres, apellidoPaterno, apellidoMaterno, direccion, municipio, estado, pais, nacimiento, telefono, email, user, password)
 values
-('Eduardo Daniel','Rico','Gómez','Prol. Jacarandas 1010','Celaya','Guanajuato','Mexico','2020/07/23','4611842703','edu.dan68@gmail.com','edu5975','edu5975'),
-('Julio César','García','Escoto','Arboledas 404','Salamanca','Guanajuato','Mexico','2020/05/10','4645793708','zeth@gmail.com','zeth','zeth');
+('Eduardo Daniel','Rico','Gómez','Prol. Jacarandas 1010','Celaya','Guanajuato','Mexico','1999/07/23','4611842703','edu.dan68@gmail.com','edu5975','edu5975'),
+('Julio César','García','Escoto','Arboledas 404','Salamanca','Guanajuato','Mexico','1999/05/10','4645793708','zeth@gmail.com','zeth','zeth');
 
 insert into pacientes_alergias(idPacientes, idAlergias) values (1,1),(1,2),(1,3);
 insert into pacientes_enfermedades(idPacientes, idEnfermedades) values (1,1),(1,2),(1,3);
@@ -241,7 +241,7 @@ insert into medicamentos(nombre, descripcion, costo, foto) values
 insert into recetas_medicamentos(idRecetas, idMedicamentos) values
 (1,1),(1,2),(1,3),(1,4),(2,5),(2,6),(2,7),(2,8);
 
-
+select * from pacientes;
 
 
 

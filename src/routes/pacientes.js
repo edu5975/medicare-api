@@ -90,24 +90,23 @@ router.post('/pacientes', (req, res) => {
                 });
             res.status(200).send({
                 status: 'Paciente Saved',
-                paciente: {
-                    id: rows.insertId,
-                    nombres,
-                    apellidoPaterno,
-                    apellidoMaterno,
-                    direccion,
-                    municipio,
-                    estado,
-                    pais,
-                    nacimiento,
-                    telefono,
-                    email,
-                    user,
-                    password,
-                    enfermedades,
-                    alergias,
-                    cirugias
-                }
+                id: rows.insertId,
+                nombres,
+                apellidoPaterno,
+                apellidoMaterno,
+                direccion,
+                municipio,
+                estado,
+                pais,
+                nacimiento,
+                telefono,
+                email,
+                user,
+                password,
+                enfermedades,
+                alergias,
+                cirugias
+
             });
         } else {
             res.status(500).send({ message: err })
