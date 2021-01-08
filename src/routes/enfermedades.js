@@ -54,10 +54,8 @@ router.post('/enfermedades', (req, res) => {
         if (!err) {
             res.status(200).send({
                 status: 'Enfermedad Saved',
-                enfermedades: {
-                    id: rows.insertId,
-                    descripcion
-                }
+                id: rows.insertId,
+                descripcion
             });
         } else {
             res.status(500).send({ message: err })
@@ -77,10 +75,8 @@ router.put('/enfermedades/:id', (req, res) => {
             if (rows.changedRows != 0)
                 res.status(200).send({
                     status: 'Enfermedad Updated',
-                    enfermedades: {
-                        id,
-                        descripcion
-                    }
+                    id,
+                    descripcion
                 });
             else
                 res.status(404).send({ message: 'Enfermedad not found' });

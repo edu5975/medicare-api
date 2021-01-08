@@ -55,13 +55,11 @@ router.post('/covid', (req, res) => {
         if (!err) {
             res.status(200).send({
                 status: 'Covid Saved',
-                covid: {
-                    id: rows.insertId,
-                    idPaciente,
-                    idMedico,
-                    estado,
-                    fecha: Date.now()
-                }
+                id: rows.insertId,
+                idPaciente,
+                idMedico,
+                estado,
+                fecha: Date.now()
             });
         } else {
             res.status(500).send({ message: err })

@@ -54,10 +54,8 @@ router.post('/pacientes/:idPacientes/cirugias/:idCirugias', (req, res) => {
         if (!err) {
             res.status(200).send({
                 status: ' Saved',
-                pacientes_enfermedad: {
-                    idPacientes,
-                    idCirugias
-                }
+                idPacientes,
+                idCirugias
             });
         } else {
             res.status(500).send({ message: err })

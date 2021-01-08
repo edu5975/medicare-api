@@ -54,12 +54,10 @@ router.post('/consultas/:idConsulta/recetas', (req, res) => {
         if (!err) {
             res.status(200).send({
                 status: 'Receta Saved',
-                recetas: {
-                    idConsulta,
-                    idMedico,
-                    descripcion,
-                    pdf
-                }
+                idConsulta,
+                idMedico,
+                descripcion,
+                pdf
             });
         } else {
             res.status(500).send({ message: err })
@@ -97,12 +95,10 @@ router.put('/consultas/:idConsulta/recetas', (req, res) => {
             if (rows.changedRows != 0)
                 res.status(200).send({
                     status: 'Recetas Updated',
-                    recetas: {
-                        idConsulta,
-                        idMedico,
-                        descripcion,
-                        pdf
-                    }
+                    idConsulta,
+                    idMedico,
+                    descripcion,
+                    pdf
                 });
             else
                 res.status(404).send({ message: 'Recetas not found' });

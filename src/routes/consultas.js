@@ -95,14 +95,12 @@ router.post('/pacientes/:idPacientes/consultas', (req, res) => {
         if (!err) {
             res.status(200).send({
                 status: 'Consulta Saved',
-                consultas: {
-                    id: rows.insertId,
-                    idPaciente,
-                    idEspecialidad,
-                    sintomas,
-                    fotosvideos,
-                    estado
-                }
+                id: rows.insertId,
+                idPaciente,
+                idEspecialidad,
+                sintomas,
+                fotosvideos,
+                estado
             });
         } else {
             res.status(500).send({ message: err })
@@ -150,14 +148,12 @@ update consultas set idEspecialidad = ?, sintomas =?, fotosvideos=?,estado=? whe
             if (rows.changedRows != 0)
                 res.status(200).send({
                     status: 'Consultas Updated',
-                    consultas: {
-                        idConsultas,
-                        idPacientes,
-                        idEspecialidad,
-                        sintomas,
-                        fotosvideos,
-                        estado
-                    }
+                    idConsultas,
+                    idPacientes,
+                    idEspecialidad,
+                    sintomas,
+                    fotosvideos,
+                    estado
                 });
             else
                 res.status(404).send({ message: 'Consulta not found' });

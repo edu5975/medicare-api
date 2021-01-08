@@ -58,13 +58,11 @@ router.post('/medicamentos', (req, res) => {
         if (!err) {
             res.status(200).send({
                 status: 'Medicamentos Saved',
-                medicamentos: {
-                    id: rows.insertId,
-                    nombre,
-                    descripcion,
-                    costo,
-                    foto
-                }
+                id: rows.insertId,
+                nombre,
+                descripcion,
+                costo,
+                foto
             });
         } else {
             res.status(500).send({ message: err })
@@ -84,13 +82,11 @@ router.put('/medicamentos/:id', (req, res) => {
             if (rows.changedRows != 0)
                 res.status(200).send({
                     status: 'medicamento Updated',
-                    medicamentos: {
-                        id,
-                        nombre,
-                        descripcion,
-                        costo,
-                        foto
-                    }
+                    id,
+                    nombre,
+                    descripcion,
+                    costo,
+                    foto
                 });
             else
                 res.status(404).send({ message: 'medicamentos not found' });

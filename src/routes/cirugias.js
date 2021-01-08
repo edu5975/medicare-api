@@ -54,10 +54,8 @@ router.post('/cirugias', (req, res) => {
         if (!err) {
             res.status(200).send({
                 status: 'Cirugia Saved',
-                cirugias: {
-                    id: rows.insertId,
-                    descripcion
-                }
+                id: rows.insertId,
+                descripcion
             });
         } else {
             res.status(500).send({ message: err })
@@ -77,10 +75,8 @@ router.put('/cirugias/:id', (req, res) => {
             if (rows.changedRows != 0)
                 res.status(200).send({
                     status: 'Cirugia Updated',
-                    cirugias: {
-                        id,
-                        descripcion
-                    }
+                    id,
+                    descripcion
                 });
             else
                 res.status(404).send({ message: 'Cirugia not found' });

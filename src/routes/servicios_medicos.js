@@ -54,11 +54,9 @@ router.post('/medicos/:idMedicos/servicios/:idServicios', (req, res) => {
         if (!err) {
             res.status(200).send({
                 status: ' Saved',
-                servicios_medicos: {
-                    idMedicos,
-                    idServicios,
-                    costo
-                }
+                idMedicos,
+                idServicios,
+                costo
             });
         } else {
             res.status(500).send({ message: err })

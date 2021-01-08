@@ -53,10 +53,8 @@ router.post('/recetas/:idRecetas/medicamentos/:idMedicamentos', (req, res) => {
         if (!err) {
             res.status(200).send({
                 status: ' Saved',
-                recetas_medicamentos: {
-                    idRecetas,
-                    idMedicamentos
-                }
+                idRecetas,
+                idMedicamentos
             });
         } else {
             res.status(500).send({ message: err })

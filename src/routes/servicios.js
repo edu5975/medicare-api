@@ -54,10 +54,8 @@ router.post('/servicios', (req, res) => {
         if (!err) {
             res.status(200).send({
                 status: 'Servicio Saved',
-                servicios: {
-                    id: rows.insertId,
-                    descripcion
-                }
+                id: rows.insertId,
+                descripcion
             });
         } else {
             res.status(500).send({ message: err })
@@ -77,10 +75,8 @@ router.put('/servicios/:id', (req, res) => {
             if (rows.changedRows != 0)
                 res.status(200).send({
                     status: 'Servicio Updated',
-                    servicios: {
-                        id,
-                        descripcion
-                    }
+                    id,
+                    descripcion
                 });
             else
                 res.status(404).send({ message: 'Servicio not found' });

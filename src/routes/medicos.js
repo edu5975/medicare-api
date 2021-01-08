@@ -81,23 +81,21 @@ router.post('/medicos', (req, res) => {
                 });
             res.status(200).send({
                 status: 'Medicos Saved',
-                medicos: {
-                    id: rows.insertId,
-                    nombres,
-                    apellidoPaterno,
-                    apellidoMaterno,
-                    cedula,
-                    direccion,
-                    municipio,
-                    estado,
-                    pais,
-                    telefono,
-                    email,
-                    user,
-                    password,
-                    idEspecialidades,
-                    servicios
-                }
+                id: rows.insertId,
+                nombres,
+                apellidoPaterno,
+                apellidoMaterno,
+                cedula,
+                direccion,
+                municipio,
+                estado,
+                pais,
+                telefono,
+                email,
+                user,
+                password,
+                idEspecialidades,
+                servicios
             });
         } else {
             res.status(500).send({ message: err })
@@ -119,22 +117,20 @@ where id = ?;;
             if (rows.changedRows != 0)
                 res.status(200).send({
                     status: 'Alergias Updated',
-                    alergias: {
-                        id,
-                        nombres,
-                        apellidoPaterno,
-                        apellidoMaterno,
-                        cedula,
-                        direccion,
-                        municipio,
-                        estado,
-                        pais,
-                        telefono,
-                        email,
-                        user,
-                        password,
-                        idEspecialidades
-                    }
+                    id,
+                    nombres,
+                    apellidoPaterno,
+                    apellidoMaterno,
+                    cedula,
+                    direccion,
+                    municipio,
+                    estado,
+                    pais,
+                    telefono,
+                    email,
+                    user,
+                    password,
+                    idEspecialidades
                 });
             else
                 res.status(404).send({ message: 'Medico not found' });
