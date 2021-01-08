@@ -148,6 +148,13 @@ create table recetas_medicamentos(
     constraint foreign key (idMedicamentos) references medicamentos(id)
 );
 
+create table consultas_media(
+    id integer auto_increment primary key,
+    idConsulta integer,
+    media varchar(40),
+    constraint foreign key (idConsulta) references consultas(id)
+);
+
 insert into alergias(descripcion) values ('Polen'),('Polvo'),('Moho'),('Latex'),('Pasto'),('Nuez'),('Cacahuate'),('Fresa'),
 ('Sol'),('Pelo de perro'),('Pelo de gato'),('Mascotas'),('Frutos secos'),('Soja'),('Abejas'),('Mariscos'),('Huevo'),('Leche');
 
@@ -241,7 +248,10 @@ insert into medicamentos(nombre, descripcion, costo, foto) values
 insert into recetas_medicamentos(idRecetas, idMedicamentos) values
 (1,1),(1,2),(1,3),(1,4),(2,5),(2,6),(2,7),(2,8);
 
-select * from pacientes;
+insert into consultas_media(idConsulta, media) values
+(1,'url 1'),(2,'url 2'),(1,'url 3');
+
+select *
 
 
 

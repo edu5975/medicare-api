@@ -19,6 +19,31 @@ router.get('/consultas', (req, res) => {
     });
 });
 
+// INSERT una consulta
+router.post('/consultas', (req, res) => {
+    const { idPaciente, idEspecialidad, sintomas } = req.body;
+    const estado = "Sin responder"
+    const query = `
+    insert into consultas(idPaciente, idEspecialidad, sintomas, estado, fecha) values
+    (?,?,?,?,current_date)
+  `;
+    mysqlConnection.query(query, [idPaciente, idEspecialidad, sintomas, estado], (err, rows, fields) => {
+        if (!err) {
+            res.status(200).send({
+                status: 'Consulta Saved',
+                id: rows.insertId,
+                idPaciente,
+                idEspecialidad,
+                sintomas,
+                estado
+            });
+        } else {
+            res.status(500).send({ message: err })
+        }
+    });
+});
+
+
 // GET una consulta
 router.get('/consultas/:id', (req, res) => {
     const { id } = req.params;
@@ -28,6 +53,10 @@ router.get('/consultas/:id', (req, res) => {
                 var especialidades = await axiosController.getAxios(config.host + '/especialidades/' + rows[0].idEspecialidad);
                 if (especialidades.id) {
                     rows[0].especialidades = especialidades;
+                }
+                var consultas_media = await axiosController.getAxios(config.host + '/consultas/' + rows[0].id + '/media');
+                if (consultas_media.length) {
+                    rows[0].consultas_media = consultas_media;
                 }
                 var recetas = await axiosController.getAxios(config.host + '/recetas/' + rows[0].id);
                 if (recetas.idConsulta) {
@@ -46,7 +75,7 @@ router.get('/consultas/:id', (req, res) => {
     });
 });
 
-// GET una consulta
+// GET consultas de un paciente
 router.get('/pacientes/:idPacientes/consultas', (req, res) => {
     const { idPacientes } = req.params;
     const query = `
@@ -84,22 +113,21 @@ router.get('/pacientes/:idPacientes/consultas/:idConsultas', (req, res) => {
 
 // INSERT una consulta
 router.post('/pacientes/:idPacientes/consultas', (req, res) => {
-    const { idPaciente } = req.params;
-    const { idEspecialidad, sintomas, fotosvideos } = req.body;
+    const { idPacientes } = req.params;
+    const { idEspecialidad, sintomas } = req.body;
     const estado = "Sin responder"
     const query = `
-    insert into consultas(idPaciente, idEspecialidad, sintomas, fotosvideos, estado, fecha) values
+    insert into consultas(idPaciente, idEspecialidad, sintomas, estado, fecha) values
     (?,?,?,?,?,current_date)
   `;
-    mysqlConnection.query(query, [idPaciente, idEspecialidad, sintomas, fotosvideos, estado], (err, rows, fields) => {
+    mysqlConnection.query(query, [idPacientes, idEspecialidad, sintomas, estado], (err, rows, fields) => {
         if (!err) {
             res.status(200).send({
                 status: 'Consulta Saved',
                 id: rows.insertId,
-                idPaciente,
+                idPacientes,
                 idEspecialidad,
                 sintomas,
-                fotosvideos,
                 estado
             });
         } else {
@@ -163,4 +191,5 @@ update consultas set idEspecialidad = ?, sintomas =?, fotosvideos=?,estado=? whe
     });
 });
 
+module.exports = router;
 module.exports = router;
