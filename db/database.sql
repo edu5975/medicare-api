@@ -4,31 +4,26 @@ CREATE DATABASE IF NOT EXISTS company;
 
 USE company;
 
-/*YA TIENE INSERT*/
 create table especialidades(
     id integer auto_increment primary key,
     descripcion varchar(60)
 );
 
-/*YA TIENE INSERT*/
 create table alergias(
     id integer auto_increment primary key,
     descripcion varchar(60)
 );
 
-/*YA TIENE INSERT*/
 create table enfermedades(
     id integer auto_increment primary key,
     descripcion varchar(60)
 );
 
-/*YA TIENE INSERT*/
 create table cirugias(
     id integer auto_increment primary key,
     descripcion varchar(60)
 );
 
-/*YA TIENE INSERT*/
 create table servicios(
     id integer auto_increment primary key,
     descripcion varchar(60)
@@ -116,7 +111,6 @@ create table consultas(
     idPaciente integer,
     idEspecialidad integer,
     sintomas text,
-    fotosvideos varchar(100),
     estado varchar(20),
     fecha date,
     constraint foreign key (idPaciente) references pacientes(id),
@@ -153,6 +147,33 @@ create table consultas_media(
     idConsulta integer,
     media varchar(40),
     constraint foreign key (idConsulta) references consultas(id)
+);
+
+create table carrito(
+    idPacientes integer,
+    idMedicamentos integer,
+    cantidad integer,
+    constraint primary key (idMedicamentos,idPacientes),
+    constraint foreign key (idPacientes) references pacientes(id),
+    constraint foreign key (idMedicamentos) references medicamentos(id)
+);
+
+create table ventas(
+    id integer primary key auto_increment,
+    idPacientes integer,
+    total decimal(10,2),
+    fecha date,
+    constraint foreign key (idPacientes) references pacientes(id)
+);
+
+create table ventas_medicamentos(
+    idVentas integer,
+    idMedicamentos integer,
+    cantidad integer,
+    total decimal(10,2),
+    constraint primary key (idMedicamentos,idVentas),
+    constraint foreign key (idVentas) references ventas(id),
+    constraint foreign key (idMedicamentos) references medicamentos(id)
 );
 
 insert into alergias(descripcion) values ('Polen'),('Polvo'),('Moho'),('Latex'),('Pasto'),('Nuez'),('Cacahuate'),('Fresa'),
@@ -206,13 +227,13 @@ values
 
 insert into servicios_medicos(idMedicos,idServicios,costo) values (1,3,1000),(1,1,3200),(1,20,200),(1,45,400);
 
-insert into consultas(idPaciente, idEspecialidad, sintomas, fotosvideos, estado,fecha) values
-(1,1,'Me siento mal 1','url de la foto o video','Con respuesta',curdate()),
-(1,2,'Me siento mal 2','url de la foto o video','Con respuesta',curdate()),
-(1,3,'Me siento mal 3','url de la foto o video','Sin responder',curdate()),
-(2,1,'Me siento mal 4','url de la foto o video','Sin responder',curdate()),
-(2,2,'Me siento mal 5','url de la foto o video','Sin responder',curdate()),
-(2,3,'Me siento mal 6','url de la foto o video','Sin responder',curdate());
+insert into consultas(idPaciente, idEspecialidad, sintomas, estado,fecha) values
+(1,1,'Me siento mal 1','Con respuesta',curdate()),
+(1,2,'Me siento mal 2','Con respuesta',curdate()),
+(1,3,'Me siento mal 3','Sin responder',curdate()),
+(2,1,'Me siento mal 4','Sin responder',curdate()),
+(2,2,'Me siento mal 5','Sin responder',curdate()),
+(2,3,'Me siento mal 6','Sin responder',curdate());
 
 insert into covid(idPaciente, idMedico, estado, fecha) values
 (1,1,'Sospechoso',curdate()),
@@ -251,7 +272,6 @@ insert into recetas_medicamentos(idRecetas, idMedicamentos) values
 insert into consultas_media(idConsulta, media) values
 (1,'url 1'),(2,'url 2'),(1,'url 3');
 
-select *
 
 
 

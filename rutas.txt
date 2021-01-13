@@ -76,4 +76,17 @@ Rutas para consultas_media
 /consultas/:id/media (get,post)
 /consultas/:idConsulta/media/:idMedia (get, delete)
 
-ACTUALIZAR CONSULTA AL PONER UNA RECETA A CON RESPUESTA
+Rutas para carrito
+/carrito (post)
+/carrito/:idPacientes (get, delete)
+/carrito/:idPacientes/medicamentos/idMedicamentos (get, post, put, delete) 
+
+Rutas para ventas
+/ventas (post)
+/ventas/:idVenta (get, put, delete)
+/pacientes/:idPacientes/compras (get)
+
+Rutas para ventas_medicamentos
+/ventas/:idVentas/medicamentos (get)
+/ventas/:idVentas/medicamentos/:idMedicamentos (get, post, delete)
+
