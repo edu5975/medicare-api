@@ -272,10 +272,21 @@ insert into recetas_medicamentos(idRecetas, idMedicamentos) values
 insert into consultas_media(idConsulta, media) values
 (1,'url 1'),(2,'url 2'),(1,'url 3');
 
+insert into carrito(idPacientes, idMedicamentos, cantidad) values
+(1,2,10),(1,3,2);
 
+insert into ventas(idPacientes, total, fecha) values
+(1,3000,curdate()),(1,200,curdate());
 
+insert into ventas_medicamentos(idVentas, idMedicamentos, cantidad, total) values
+(1,1,10,100),(1,2,1,50),(1,5,4,400);
 
+select vm.idMedicamentos, m.nombre, m.foto, vm.cantidad,vm.total
+from ventas_medicamentos vm
+join medicamentos m on vm.idMedicamentos = m.id
+where vm.idVentas = ?
 
+update ventas_medicamentos set cantidad = ?, total = ? where idVentas = ? and idMedicamentos = ?
 
 
 

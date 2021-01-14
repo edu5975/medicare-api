@@ -36,6 +36,9 @@ app.use(require('./routes/acceso'));
 app.use(require('./routes/medicamentos'));
 app.use(require('./routes/recetas_medicamentos'));
 app.use(require('./routes/consultas_media'));
+app.use(require('./routes/carrito'));
+app.use(require('./routes/ventas'));
+app.use(require('./routes/ventas_medicamentos'));
 
 app.use(require('./routes/extras'));
 

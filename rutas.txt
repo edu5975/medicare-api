@@ -78,13 +78,13 @@ Rutas para consultas_media
 
 Rutas para carrito
 /carrito (post)
-/carrito/:idPacientes (get, delete)
-/carrito/:idPacientes/medicamentos/idMedicamentos (get, post, put, delete) 
+/pacientes/:idPaciente/carrito (get, delete)
+/pacientes/:idPacientes/carrito/:idMedicamentos (get, post, put, delete) 
 
 Rutas para ventas
-/ventas (post)
+/ventas (get, post)
 /ventas/:idVenta (get, put, delete)
-/pacientes/:idPacientes/compras (get)
+/pacientes/:idPacientes/ventas (get)
 
 Rutas para ventas_medicamentos
 /ventas/:idVentas/medicamentos (get)
