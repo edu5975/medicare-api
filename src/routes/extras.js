@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const upload = require('../controller/multerController');
 const axiosController = require('../controller/axiosController');
+var nodemailer = require('nodemailer');
+
 
 
 // GET imagen
@@ -19,11 +21,36 @@ router.post('/images', (req, res) => {
     })
 });
 
-//POST get
-router.post('/post', (req, res) => {
-    res.status(200).send(req.body)
-});
+//POST email
+router.post('/email', (req, res) => {
+    const { email, titulo, contenido } = req.body;
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: '17030434@itcelaya.edu.mx',
+            pass: 'masteredu5975'
+        }
+    });
 
+    var mailOptions = {
+        from: '17030434@itcelaya.edu.mx',
+        to: email,
+        subject: titulo,
+        html: contenido
+    };
+
+    transporter.sendMail(mailOptions, function(error, info) {
+        if (error) {
+            console.log(error);
+            res.status(404).send({ error })
+        } else {
+            res.status(200).send({
+                status: "success",
+                info
+            })
+        }
+    });
+});
 
 //NADA
 router.get('*', (req, res) => {

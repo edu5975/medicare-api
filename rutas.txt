@@ -90,3 +90,5 @@ Rutas para ventas_medicamentos
 /ventas/:idVentas/medicamentos (get)
 /ventas/:idVentas/medicamentos/:idMedicamentos (get, post, delete)
 
+Ruta para email
+/email (post)
