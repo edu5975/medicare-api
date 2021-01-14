@@ -273,7 +273,7 @@ insert into consultas_media(idConsulta, media) values
 (1,'url 1'),(2,'url 2'),(1,'url 3');
 
 insert into carrito(idPacientes, idMedicamentos, cantidad) values
-(1,2,10),(1,3,2);
+(1,2,10),(1,3,2),(1,1,4);
 
 insert into ventas(idPacientes, total, fecha) values
 (1,3000,curdate()),(1,200,curdate());

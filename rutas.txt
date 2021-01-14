@@ -92,3 +92,7 @@ Rutas para ventas_medicamentos
 
 Ruta para email
 /email (post)
+
+Ruta para imagenes
+/images (post)
+/images/:nombre (get)
