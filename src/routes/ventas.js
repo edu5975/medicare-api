@@ -7,12 +7,14 @@ const config = require('../config.js')
 
 // INSERT venta
 router.post('/ventas', (req, res) => {
-    const { idPacientes, total, fecha } = req.body;
+    const { idPacientes, total } = req.body;
+    fecha = Date.now();
     const query = `insert into ventas(idPacientes, total, fecha) values (?,?,curdate());`;
-    mysqlConnection.query(query, [idPacientes, total, fecha], (err, rows, fields) => {
+    mysqlConnection.query(query, [idPacientes, total], (err, rows, fields) => {
         if (!err) {
             res.status(200).send({
-                status: ' Saved',
+                status: ' Saved',                
+id: rows.insertId,
                 idPacientes,
                 total,
                 fecha
