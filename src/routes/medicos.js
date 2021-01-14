@@ -71,7 +71,7 @@ router.post('/medicos', (req, res) => {
     const query = `
     insert into medicos(nombres, apellidoPaterno, apellidoMaterno, cedula, direccion, municipio, 
         estado, pais, telefono, email, user, password, idEspecialidades)    values
-    (?,?,?,?,?,?,?,?,?,?,?,?,?)
+    (?,?,?,?,?,?,?,?,?,?,?,?,?) 
   `;
     mysqlConnection.query(query, [nombres, apellidoPaterno, apellidoMaterno, cedula, direccion, municipio, estado, pais, telefono, email, user, password, idEspecialidades], (err, rows, fields) => {
         if (!err) {
@@ -116,7 +116,7 @@ where id = ?;;
         if (!err) {
             if (rows.changedRows != 0)
                 res.status(200).send({
-                    status: 'Alergias Updated',
+                    status: 'Medicos Updated',
                     id,
                     nombres,
                     apellidoPaterno,

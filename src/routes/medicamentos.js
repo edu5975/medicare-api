@@ -72,7 +72,11 @@ router.post('/medicamentos', (req, res) => {
 
 //UPDATE una medicamentos
 router.put('/medicamentos/:id', (req, res) => {
-    const { nombre, descripcion, costo, foto } = req.body;
+    const { nombre, descripcion, costo } = req.body;
+
+    upload.single('foto');
+    foto = upload.url;
+
     const { id } = req.params;
     const query = `
     update medicamentos set nombre = ?, descripcion = ?, costo =?, foto = ? where id = ?;

@@ -40,7 +40,7 @@ Rutas para los medicos
 
 Rutas para servicios_medicos
 /medicos/:id/servicios (get)
-/medicos/:idMedicos/servicios/:idServicios (get, post, delete)
+/medicos/:idMedicos/servicios/:idServicios (get, post, put, delete)
 
 Rutas para consultas
 /consultas (get, delete, post)

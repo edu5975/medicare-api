@@ -64,5 +64,23 @@ router.post('/medicos/:idMedicos/servicios/:idServicios', (req, res) => {
     });
 });
 
+// UPDATE un servicio a un medico
+router.put('/medicos/:idMedicos/servicios/:idServicios', (req, res) => {
+    const { idMedicos, idServicios } = req.params;
+    const { costo } = req.body;
+    const query = `update servicios_medicos set costo = ? where idMedicos = ? and idServicios = ?`;
+    mysqlConnection.query(query, [costo, idMedicos, idServicios], (err, rows, fields) => {
+        if (!err) {
+            res.status(200).send({
+                status: ' Saved',
+                idMedicos,
+                idServicios,
+                costo
+            });
+        } else {
+            res.status(500).send({ message: err })
+        }
+    });
+});
 
 module.exports = router;

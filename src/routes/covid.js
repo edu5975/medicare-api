@@ -49,7 +49,7 @@ router.post('/covid', (req, res) => {
     const { idPaciente, idMedico, estado } = req.body;
     const query = `
     insert into covid(idPaciente, idMedico, estado, fecha) values
-    (?,?,?,current_date);
+    (?,?,?,curdate());
   `;
     mysqlConnection.query(query, [idPaciente, idMedico, estado], (err, rows, fields) => {
         if (!err) {

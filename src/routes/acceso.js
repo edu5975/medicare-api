@@ -47,12 +47,4 @@ router.post('/login', (req, res) => {
     });
 });
 
-router.get('/login2', (req, res) => {
-    res.status(200).send({
-        status: 'Correct',
-        id: 1,
-        role: 0
-    })
-});
-
 module.exports = router;

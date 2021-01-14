@@ -281,13 +281,11 @@ insert into ventas(idPacientes, total, fecha) values
 insert into ventas_medicamentos(idVentas, idMedicamentos, cantidad, total) values
 (1,1,10,100),(1,2,1,50),(1,5,4,400);
 
-select vm.idMedicamentos, m.nombre, m.foto, vm.cantidad,vm.total
-from ventas_medicamentos vm
-join medicamentos m on vm.idMedicamentos = m.id
-where vm.idVentas = ?
 
-update ventas_medicamentos set cantidad = ?, total = ? where idVentas = ? and idMedicamentos = ?
+select * from pacientes;
+select * from medicos;
 
+select  * from servicios_medicos;
 
 
 
