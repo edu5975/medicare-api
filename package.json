@@ -1,25 +1,26 @@
 {
-  "name": "mysql-nodejs-rest-api",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "nodemon src/index.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "axios": "^0.21.1",
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "mime-types": "^2.1.28",
-    "multer": "^1.4.2",
-    "mysql": "^2.18.1",
-    "nodemailer": "^6.4.17"
-  },
-  "devDependencies": {
-    "nodemon": "^1.17.5"
-  }
+    "name": "mysql-nodejs-rest-api",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node src/index.js",
+        "dev": "nodemon src/index.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "axios": "^0.21.1",
+        "body-parser": "^1.19.0",
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "mime-types": "^2.1.28",
+        "multer": "^1.4.2",
+        "mysql": "^2.18.1",
+        "nodemailer": "^6.4.17"
+    },
+    "devDependencies": {
+        "nodemon": "^1.17.5"
+    }
 }

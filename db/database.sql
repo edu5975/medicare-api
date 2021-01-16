@@ -1,9 +1,8 @@
-DROP DATABASE IF EXISTS company;
+/*DROP DATABASE IF EXISTS company;
 
 CREATE DATABASE IF NOT EXISTS company;
 
-USE company;
-
+USE company;*/
 create table especialidades(
     id integer auto_increment primary key,
     descripcion varchar(60)
