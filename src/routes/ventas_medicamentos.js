@@ -24,7 +24,7 @@ router.get('/ventas/:idVenta/medicamentos/:idMedicamentos', (req, res) => {
     mysqlConnection.query('select m.id, m.nombre, m.foto, vm.cantidad,vm.total from ventas_medicamentos vm join medicamentos m on vm.idMedicamentos = m.id where vm.idVentas = ? and m.id = ?', [idVenta, idMedicamentos], (err, rows, fields) => {
         if (!err) {
             if (rows.length != 0)
-                res.status(200).send(rows)
+                res.status(200).send(rows[0])
             else
                 res.status(404).send({ message: 'Not found' })
         } else {
@@ -36,14 +36,16 @@ router.get('/ventas/:idVenta/medicamentos/:idMedicamentos', (req, res) => {
 // INSERT ventas_medicamentos
 router.post('/ventas/:idVentas/medicamentos/:idMedicamentos', (req, res) => {
     const { idVentas, idMedicamentos } = req.params;
-    const { cantidad, total } = req.body;
-    const query = `insert into ventas_medicamentos(idVentas, idMedicamentos, cantidad, total) values (?,?,?,?)`;
-    mysqlConnection.query(query, [idVentas, idMedicamentos, cantidad, total], (err, rows, fields) => {
+    const { cantidad, precio } = req.body;
+    total = cantidad * precio;
+    const query = `insert into ventas_medicamentos(idVentas, idMedicamentos, cantidad, total,precio) values (?,?,?,?,?)`;
+    mysqlConnection.query(query, [idVentas, idMedicamentos, cantidad, total, precio], (err, rows, fields) => {
         if (!err) {
             res.status(200).send({
                 status: ' Saved',
                 idVentas,
                 idMedicamentos,
+                precio,
                 cantidad,
                 total
             });

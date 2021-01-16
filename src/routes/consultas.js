@@ -27,6 +27,7 @@ router.post('/consultas', (req, res) => {
     insert into consultas(idPaciente, idEspecialidad, sintomas, estado, fecha) values
     (?,?,?,?,current_date)
   `;
+    fecha = Date.now();
     mysqlConnection.query(query, [idPaciente, idEspecialidad, sintomas, estado], (err, rows, fields) => {
         if (!err) {
             res.status(200).send({
@@ -35,7 +36,8 @@ router.post('/consultas', (req, res) => {
                 idPaciente,
                 idEspecialidad,
                 sintomas,
-                estado
+                estado,
+                fecha
             });
         } else {
             res.status(500).send({ message: err })
@@ -69,6 +71,31 @@ router.get('/consultas/:id', (req, res) => {
                 res.status(200).send(rows[0])
             } else
                 res.status(404).send({ message: 'Consulta not found' })
+        } else {
+            res.status(500).send({ message: err })
+        }
+    });
+});
+
+//UPDATE una consulta
+router.put('/consultas/:id', (req, res) => {
+    const { idEspecialidad, sintomas, estado } = req.body;
+    const { id } = req.params;
+    const query = `    
+    update consultas set idEspecialidad = ?, sintomas =?,estado=? where id = ?;
+    `;
+    mysqlConnection.query(query, [idEspecialidad, sintomas, estado, id], (err, rows, fields) => {
+        if (!err) {
+            if (rows.changedRows != 0)
+                res.status(200).send({
+                    status: 'Consultas Updated',
+                    id,
+                    idEspecialidad,
+                    sintomas,
+                    estado
+                });
+            else
+                res.status(404).send({ message: 'Consulta not found' });
         } else {
             res.status(500).send({ message: err })
         }
@@ -111,31 +138,6 @@ router.get('/pacientes/:idPacientes/consultas/:idConsultas', (req, res) => {
     });
 });
 
-// INSERT una consulta
-router.post('/pacientes/:idPacientes/consultas', (req, res) => {
-    const { idPacientes } = req.params;
-    const { idEspecialidad, sintomas } = req.body;
-    const estado = "Sin responder"
-    const query = `
-    insert into consultas(idPaciente, idEspecialidad, sintomas, estado, fecha) values
-    (?,?,?,?,?,current_date)
-  `;
-    mysqlConnection.query(query, [idPacientes, idEspecialidad, sintomas, estado], (err, rows, fields) => {
-        if (!err) {
-            res.status(200).send({
-                status: 'Consulta Saved',
-                id: rows.insertId,
-                idPacientes,
-                idEspecialidad,
-                sintomas,
-                estado
-            });
-        } else {
-            res.status(500).send({ message: err })
-        }
-    });
-});
-
 // DELETE una consulta
 router.delete('/consultas/:id', (req, res) => {
     const { id } = req.params;
@@ -150,46 +152,4 @@ router.delete('/consultas/:id', (req, res) => {
     });
 });
 
-// DELETE una consulta
-router.delete('/pacientes/:idPacientes/consultas/:idConsultas', (req, res) => {
-    const { idPacientes, idConsultas } = req.params;
-    mysqlConnection.query('delete from consultas where idPaciente = ? and id = ?', [idPacientes, idConsultas], (err, rows, fields) => {
-
-        console.log(rows);
-        if (!err) {
-            res.status(200).send({ status: 'Consulta Deleted: ' + idConsultas });
-        } else {
-            res.status(500).send({ message: err })
-        }
-    });
-});
-
-//UPDATE una consulta
-router.put('/pacientes/:idPacientes/consultas/:idConsultas', (req, res) => {
-    const { idEspecialidad, sintomas, fotosvideos, estado } = req.body;
-    const { idPacientes, idConsultas } = req.params;
-    const query = `    
-update consultas set idEspecialidad = ?, sintomas =?, fotosvideos=?,estado=? where idPaciente = ? and id = ?;
-  `;
-    mysqlConnection.query(query, [idEspecialidad, sintomas, fotosvideos, estado, idPacientes, idConsultas], (err, rows, fields) => {
-        if (!err) {
-            if (rows.changedRows != 0)
-                res.status(200).send({
-                    status: 'Consultas Updated',
-                    idConsultas,
-                    idPacientes,
-                    idEspecialidad,
-                    sintomas,
-                    fotosvideos,
-                    estado
-                });
-            else
-                res.status(404).send({ message: 'Consulta not found' });
-        } else {
-            res.status(500).send({ message: err })
-        }
-    });
-});
-
-module.exports = router;
 module.exports = router;

@@ -43,10 +43,10 @@ Rutas para servicios_medicos
 /medicos/:idMedicos/servicios/:idServicios (get, post, put, delete)
 
 Rutas para consultas
-/consultas (get, delete, post)
-/consultas/:id (get, delete)
-/pacientes/:idPacientes/consultas (get, post)
-/pacientes/:idPacientes/consultas/:idConsultas (get, put, delete)
+/consultas (get, post)
+/consultas/:id (get, put, delete)
+/pacientes/:idPacientes/consultas (get)
+/pacientes/:idPacientes/consultas/:idConsultas (get)
 
 Rutas para covid
 /covid (get, post)
@@ -57,8 +57,6 @@ Rutas para covid
 Rutas para recetas
 /recetas (get)
 /recetas/:id (get, delete)
-/consultas/:idConsulta/recetas (get)
-/consultas/:idConsulta/recetas/:idRecetas (get, put, delete)
 
 Rutas para acceso
 /login (post)

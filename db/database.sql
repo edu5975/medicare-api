@@ -121,7 +121,6 @@ create table recetas(
     idConsulta integer primary key ,
     idMedico integer,
     descripcion text,
-    pdf varchar(20),
     constraint foreign key (idConsulta) references consultas(id),
     constraint foreign key (idMedico) references medicos(id)
 );
@@ -170,6 +169,7 @@ create table ventas_medicamentos(
     idVentas integer,
     idMedicamentos integer,
     cantidad integer,
+    precio decimal(10,2),
     total decimal(10,2),
     constraint primary key (idMedicamentos,idVentas),
     constraint foreign key (idVentas) references ventas(id),
@@ -240,9 +240,9 @@ insert into covid(idPaciente, idMedico, estado, fecha) values
 (1,2,'Confirmado',curdate()),
 (1,1,'Curado',curdate());
 
-insert into recetas(idConsulta, idMedico, descripcion,pdf) values
-(1,1,'Debes hacer esto','url del pdf'),
-(2,1,'Debes hacer esto','url del pdf');
+insert into recetas(idConsulta, idMedico, descripcion) values
+(1,1,'Debes hacer esto'),
+(2,1,'Debes hacer esto');
 
 insert into medicamentos(nombre, descripcion, costo, foto) values
 ('Simvastatina','Se emplea para reducir el colesterol y los triglicéridos (tipo de grasa) en la sangre. Descubierta y desarrollada por Merck, se trata del primer medicamento con estatina que evidenció una disminución de la enfermedad cardiovascular y mortalidad.'
@@ -278,14 +278,10 @@ insert into carrito(idPacientes, idMedicamentos, cantidad) values
 insert into ventas(idPacientes, total, fecha) values
 (1,3000,curdate()),(1,200,curdate());
 
-insert into ventas_medicamentos(idVentas, idMedicamentos, cantidad, total) values
-(1,1,10,100),(1,2,1,50),(1,5,4,400);
+insert into ventas_medicamentos(idVentas, idMedicamentos, cantidad, total, precio) values
+(1,1,10,100,10),(1,2,1,50,50),(1,5,4,400,100);
 
 
-select * from pacientes;
-select * from medicos;
-
-select  * from servicios_medicos;
 
 
 

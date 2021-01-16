@@ -25,13 +25,13 @@ router.get('/recetas/:idConsulta', (req, res) => {
     mysqlConnection.query('SELECT * FROM recetas WHERE idConsulta = ?', [idConsulta], async(err, rows, fields) => {
         if (!err) {
             if (rows.length != 0) {
-                var medicos = await axiosController.getAxios(config.host + '/medicos/' + rows[0].idMedico);
-                if (medicos.id) {
-                    rows[0].medicos = medicos;
-                }
                 var medicamentos = await axiosController.getAxios(config.host + '/recetas/' + rows[0].idConsulta + '/medicamentos');
                 if (medicamentos.length) {
                     rows[0].medicamentos = medicamentos;
+                }
+                var medicos = await axiosController.getAxios(config.host + '/medicos/' + rows[0].idMedico);
+                if (medicos.id) {
+                    rows[0].medicos = medicos;
                 }
                 res.status(200).send(rows[0])
             } else
@@ -42,22 +42,21 @@ router.get('/recetas/:idConsulta', (req, res) => {
     });
 });
 
+
 // INSERT una receta
-router.post('/consultas/:idConsulta/recetas', (req, res) => {
-    const { idConsulta } = req.params;
-    const { idMedico, descripcion, pdf } = req.body;
+router.post('/recetas', (req, res) => {
+    const { idConsulta, idMedico, descripcion } = req.body;
     const query = `
-    insert into recetas(idConsulta, idMedico, descripcion,pdf) values
-    (?,?,?,?)
+    insert into recetas(idConsulta, idMedico, descripcion) values
+    (?,?,?)
   `;
-    mysqlConnection.query(query, [idConsulta, idMedico, descripcion, pdf], (err, rows, fields) => {
+    mysqlConnection.query(query, [idConsulta, idMedico, descripcion], (err, rows, fields) => {
         if (!err) {
             res.status(200).send({
                 status: 'Receta Saved',
                 idConsulta,
                 idMedico,
-                descripcion,
-                pdf
+                descripcion
             });
         } else {
             res.status(500).send({ message: err })
@@ -84,7 +83,7 @@ router.put('/consultas/:idConsulta/recetas', (req, res) => {
     const { idMedico, descripcion, pdf } = req.body;
     const { idConsulta } = req.params;
     const query = `    
-    update recetas
+    update recetas 
     set idMedico = ?,
         descripcion = ?,
         pdf = ?
