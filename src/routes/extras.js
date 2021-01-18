@@ -1,10 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const upload = require('../controller/multerController');
-const axiosController = require('../controller/axiosController');
+const mysqlConnection = require('../database.js');
 var nodemailer = require('nodemailer');
-
-
 
 // GET imagen
 router.get('/images/:nombre', (req, res) => {
@@ -48,6 +46,18 @@ router.post('/email', (req, res) => {
                 status: "success",
                 info
             })
+        }
+    });
+});
+
+//OTRA CONSULTA
+router.post('/query', (req, res) => {
+    const { query } = req.body;
+    mysqlConnection.query(query, [], (err, rows, fields) => {
+        if (!err) {
+            res.status(200).send(rows);
+        } else {
+            res.status(500).send({ message: err })
         }
     });
 });

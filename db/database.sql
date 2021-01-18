@@ -4,26 +4,26 @@ CREATE DATABASE IF NOT EXISTS company;
 
 USE company;*/
 
-drop table servicios_medicos;
-drop table pacientes_enfermedades;
-drop table recetas_medicamentos;
-drop table pacientes_cirugias;
-drop table ventas_medicamentos;
-drop table consultas_media;
-drop table carrito;
-drop table pacientes_alergias;
-drop table recetas;
-drop table medicamentos;
-drop table covid;
-drop table consultas;
-drop table ventas;
-drop table pacientes;
-drop table enfermedades;
-drop table alergias;
-drop table cirugias;
-drop table medicos;
-drop table especialidades;
-drop table servicios;
+drop table if exists servicios_medicos;
+drop table if exists pacientes_enfermedades;
+drop table if exists recetas_medicamentos;
+drop table if exists pacientes_cirugias;
+drop table if exists ventas_medicamentos;
+drop table if exists consultas_media;
+drop table if exists carrito;
+drop table if exists pacientes_alergias;
+drop table if exists recetas;
+drop table if exists medicamentos;
+drop table if exists covid;
+drop table if exists consultas;
+drop table if exists ventas;
+drop table if exists pacientes;
+drop table if exists enfermedades;
+drop table if exists alergias;
+drop table if exists cirugias;
+drop table if exists medicos;
+drop table if exists especialidades;
+drop table if exists servicios;
 
 create table especialidades(
     id integer auto_increment primary key,
@@ -70,24 +70,24 @@ create table pacientes_alergias(
     idPacientes integer,
     idAlergias integer,
     constraint primary key (idAlergias,idPacientes),
-    constraint foreign key (idAlergias) references alergias(id),
-    constraint foreign key (idPacientes) references pacientes(id)
+    constraint foreign key (idAlergias) references alergias(id) on delete cascade,
+    constraint foreign key (idPacientes) references pacientes(id) on delete cascade
 );
 
 create table pacientes_enfermedades(
     idPacientes integer,
     idEnfermedades integer,
     constraint primary key (idEnfermedades,idPacientes),
-    constraint foreign key (idEnfermedades) references enfermedades(id),
-    constraint foreign key (idPacientes) references pacientes(id)
+    constraint foreign key (idEnfermedades) references enfermedades(id) on delete cascade,
+    constraint foreign key (idPacientes) references pacientes(id) on delete cascade
 );
 
 create table pacientes_cirugias(
     idPacientes integer,
     idCirugias integer,
     constraint primary key (idCirugias,idPacientes),
-    constraint foreign key (idCirugias) references cirugias(id),
-    constraint foreign key (idPacientes) references pacientes(id)
+    constraint foreign key (idCirugias) references cirugias(id) on delete cascade,
+    constraint foreign key (idPacientes) references pacientes(id) on delete cascade
 );
 
 create table medicos(
@@ -105,7 +105,7 @@ create table medicos(
   user varchar(20),
   password varchar(40),
   idEspecialidades integer,
-  constraint foreign key (idEspecialidades) references especialidades(id)
+  constraint foreign key (idEspecialidades) references especialidades(id) on delete cascade
 );
 
 create table servicios_medicos(
@@ -113,8 +113,8 @@ create table servicios_medicos(
     idServicios integer,
     costo decimal(10,2),
     constraint primary key (idServicios,idMedicos),
-    constraint foreign key (idServicios) references servicios(id),
-    constraint foreign key (idMedicos) references medicos(id)
+    constraint foreign key (idServicios) references servicios(id) on delete cascade,
+    constraint foreign key (idMedicos) references medicos(id) on delete cascade
 );
 
 create table covid(
@@ -123,8 +123,8 @@ create table covid(
     idMedico integer,
     estado varchar(20),
     fecha date,
-    constraint foreign key (idPaciente) references pacientes(id),
-    constraint foreign key (idMedico) references medicos(id)
+    constraint foreign key (idPaciente) references pacientes(id) on delete cascade,
+    constraint foreign key (idMedico) references medicos(id) on delete cascade
 );
 
 create table consultas(
@@ -134,16 +134,16 @@ create table consultas(
     sintomas text,
     estado varchar(20),
     fecha date,
-    constraint foreign key (idPaciente) references pacientes(id),
-    constraint foreign key (idEspecialidad) references especialidades(id)
+    constraint foreign key (idPaciente) references pacientes(id) on delete cascade,
+    constraint foreign key (idEspecialidad) references especialidades(id) on delete cascade
 );
 
 create table recetas(
     idConsulta integer primary key ,
     idMedico integer,
     descripcion text,
-    constraint foreign key (idConsulta) references consultas(id),
-    constraint foreign key (idMedico) references medicos(id)
+    constraint foreign key (idConsulta) references consultas(id) on delete cascade,
+    constraint foreign key (idMedico) references medicos(id) on delete cascade
 );
 
 create table medicamentos(
@@ -158,15 +158,15 @@ create table recetas_medicamentos(
     idRecetas integer,
     idMedicamentos integer,
     constraint primary key (idRecetas,idMedicamentos),
-    constraint foreign key (idRecetas) references recetas(idConsulta),
-    constraint foreign key (idMedicamentos) references medicamentos(id)
+    constraint foreign key (idRecetas) references recetas(idConsulta) on delete cascade,
+    constraint foreign key (idMedicamentos) references medicamentos(id) on delete cascade
 );
 
 create table consultas_media(
     id integer auto_increment primary key,
     idConsulta integer,
     media varchar(40),
-    constraint foreign key (idConsulta) references consultas(id)
+    constraint foreign key (idConsulta) references consultas(id) on delete cascade
 );
 
 create table carrito(
@@ -174,8 +174,8 @@ create table carrito(
     idMedicamentos integer,
     cantidad integer,
     constraint primary key (idMedicamentos,idPacientes),
-    constraint foreign key (idPacientes) references pacientes(id),
-    constraint foreign key (idMedicamentos) references medicamentos(id)
+    constraint foreign key (idPacientes) references pacientes(id) on delete cascade,
+    constraint foreign key (idMedicamentos) references medicamentos(id) on delete cascade
 );
 
 create table ventas(
@@ -183,7 +183,7 @@ create table ventas(
     idPacientes integer,
     total decimal(10,2),
     fecha date,
-    constraint foreign key (idPacientes) references pacientes(id)
+    constraint foreign key (idPacientes) references pacientes(id) on delete cascade
 );
 
 create table ventas_medicamentos(
@@ -193,8 +193,8 @@ create table ventas_medicamentos(
     precio decimal(10,2),
     total decimal(10,2),
     constraint primary key (idMedicamentos,idVentas),
-    constraint foreign key (idVentas) references ventas(id),
-    constraint foreign key (idMedicamentos) references medicamentos(id)
+    constraint foreign key (idVentas) references ventas(id) on delete cascade,
+    constraint foreign key (idMedicamentos) references medicamentos(id) on delete cascade
 );
 
 insert into alergias(descripcion) values ('Polen'),('Polvo'),('Moho'),('Latex'),('Pasto'),('Nuez'),('Cacahuate'),('Fresa'),
@@ -301,9 +301,6 @@ insert into ventas(idPacientes, total, fecha) values
 
 insert into ventas_medicamentos(idVentas, idMedicamentos, cantidad, total, precio) values
 (1,1,10,100,10),(1,2,1,50,50),(1,5,4,400,100);
-
-
-
 
 
 
