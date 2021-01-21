@@ -593,4 +593,6 @@ select p.pais as string, p.pais,count(distinct p.id) as total,
     join covid c on p.id = c.idPaciente
     group by p.pais;
 
+select * from especialidades;
+
 
