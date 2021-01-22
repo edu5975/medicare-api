@@ -5,7 +5,7 @@ const mysqlConnection = require('../database.js');
 
 // GET todas las servicios
 router.get('/servicios', (req, res) => {
-    mysqlConnection.query('SELECT * FROM servicios', (err, rows, fields) => {
+    mysqlConnection.query('SELECT * FROM servicios order by descripcion', (err, rows, fields) => {
         if (!err) {
             if (rows.length != 0)
                 res.status(200).send(rows)

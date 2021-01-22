@@ -595,4 +595,8 @@ select p.pais as string, p.pais,count(distinct p.id) as total,
 
 select * from especialidades;
 
+select * from medicamentos;
+
+select * from medicamentos;
+
 
