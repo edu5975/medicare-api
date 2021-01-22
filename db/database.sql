@@ -460,17 +460,17 @@ insert into medicos(nombres, apellidoPaterno, apellidoMaterno, cedula, direccion
 insert into servicios_medicos(idMedicos,idServicios,costo) values (1,3,1000),(1,1,3200),(1,20,200),(1,45,400);
 
 insert into consultas(idPaciente, idEspecialidad, sintomas, estado,fecha) values
-(1,1,'Me siento mal 1','Con respuesta',curdate()),
-(1,2,'Me siento mal 2','Con respuesta',curdate()),
-(1,3,'Me siento mal 3','Sin responder',curdate()),
-(2,1,'Me siento mal 4','Sin responder',curdate()),
-(2,2,'Me siento mal 5','Sin responder',curdate()),
-(2,3,'Me siento mal 6','Sin responder',curdate());
+(1,1,'Me siento mal 1','Con respuesta',current_timestamp()),
+(1,2,'Me siento mal 2','Con respuesta',current_timestamp()),
+(1,3,'Me siento mal 3','Sin responder',current_timestamp()),
+(2,1,'Me siento mal 4','Sin responder',current_timestamp()),
+(2,2,'Me siento mal 5','Sin responder',current_timestamp()),
+(2,3,'Me siento mal 6','Sin responder',current_timestamp());
 
 insert into covid(idPaciente, idMedico, estado, fecha) values
-(1,1,'Sospechoso',curdate()),
-(1,2,'Confirmado',curdate()),
-(1,1,'Curado',curdate());
+(1,1,'Sospechoso',current_timestamp()),
+(1,2,'Confirmado',current_timestamp()),
+(1,1,'Curado',current_timestamp());
 
 insert into recetas(idConsulta, idMedico, descripcion) values
 (1,1,'Debes hacer esto'),
@@ -508,7 +508,7 @@ insert into carrito(idPacientes, idMedicamentos, cantidad) values
 (1,2,10),(1,3,2),(1,1,4);
 
 insert into ventas(idPacientes, total, fecha) values
-(1,3000,curdate()),(1,200,curdate());
+(1,3000,current_timestamp()),(1,200,current_timestamp());
 
 insert into ventas_medicamentos(idVentas, idMedicamentos, cantidad, total, precio) values
 (1,1,10,100,10),(1,2,1,50,50),(1,5,4,400,100);
@@ -530,21 +530,21 @@ insert into pacientes_cirugias(idPacientes, idCirugias) values ((select id from 
 insert into pacientes_enfermedades(idPacientes, idEnfermedades) values ((select id from pacientes order by rand() limit 1),(select id from enfermedades order by rand() limit 1));insert into pacientes_enfermedades(idPacientes, idEnfermedades) values ((select id from pacientes order by rand() limit 1),(select id from enfermedades order by rand() limit 1));insert into pacientes_enfermedades(idPacientes, idEnfermedades) values ((select id from pacientes order by rand() limit 1),(select id from enfermedades order by rand() limit 1));insert into pacientes_enfermedades(idPacientes, idEnfermedades) values ((select id from pacientes order by rand() limit 1),(select id from enfermedades order by rand() limit 1));insert into pacientes_enfermedades(idPacientes, idEnfermedades) values ((select id from pacientes order by rand() limit 1),(select id from enfermedades order by rand() limit 1));
 
 insert into covid(idPaciente, idMedico, estado, fecha) values
-((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Sospechoso',curdate()),
-((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Confirmado',curdate()),
-((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Curado',curdate()),
-((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Sospechoso',curdate()),
-((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Confirmado',curdate()),
-((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Curado',curdate()),
-((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Sospechoso',curdate()),
-((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Confirmado',curdate()),
-((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Curado',curdate()),
-((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Sospechoso',curdate()),
-((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Confirmado',curdate()),
-((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Curado',curdate()),
-((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Sospechoso',curdate()),
-((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Confirmado',curdate()),
-((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Curado',curdate());
+((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Sospechoso',current_timestamp()),
+((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Confirmado',current_timestamp()),
+((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Curado',current_timestamp()),
+((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Sospechoso',current_timestamp()),
+((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Confirmado',current_timestamp()),
+((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Curado',current_timestamp()),
+((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Sospechoso',current_timestamp()),
+((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Confirmado',current_timestamp()),
+((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Curado',current_timestamp()),
+((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Sospechoso',current_timestamp()),
+((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Confirmado',current_timestamp()),
+((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Curado',current_timestamp()),
+((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Sospechoso',current_timestamp()),
+((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Confirmado',current_timestamp()),
+((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Curado',current_timestamp());
 
 insert into medicos_consultas(idMedicos, idConsultas) values
 ((select id from medicos order by rand() limit 1),(select id from consultas order by rand() limit 1)),
@@ -555,10 +555,4 @@ insert into medicos_consultas(idMedicos, idConsultas) values
 
 insert into medicos_consultas(idMedicos, idConsultas) values (1,1);
 
-select * from medicos where pais = 'Mexico'
-
-select * from servicios_medicos
-
-select *
-from medicos
-where idEspecialidades = ? or pais = ? or estado = ? or ? in (select idMedicos from servicios_medicos where idMedicos = id);
+select v.id, v.idPacientes, concat(p.nombres,' ',p.apellidoPaterno,' ', p.apellidoMaterno) paciente ,v.fecha, v.total from ventas v join pacientes p on v.idPacientes = p.id

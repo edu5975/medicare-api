@@ -13,8 +13,8 @@ router.post('/ventas', (req, res) => {
     mysqlConnection.query(query, [idPacientes, total], (err, rows, fields) => {
         if (!err) {
             res.status(200).send({
-                status: ' Saved',                
-id: rows.insertId,
+                status: ' Saved',
+                id: rows.insertId,
                 idPacientes,
                 total,
                 fecha
@@ -27,7 +27,7 @@ id: rows.insertId,
 
 // GET ventas
 router.get('/ventas', (req, res) => {
-    const query = `select * from ventas`;
+    const query = `select v.id, v.idPacientes, concat(p.nombres,' ',p.apellidoPaterno,' ', p.apellidoMaterno) paciente ,v.fecha, v.total from ventas v join pacientes p on v.idPacientes = p.id`;
     mysqlConnection.query(query, [], (err, rows, fields) => {
         if (!err) {
             res.status(200).send(rows);
@@ -40,7 +40,7 @@ router.get('/ventas', (req, res) => {
 // GET ventas especifica
 router.get('/ventas/:idVenta', (req, res) => {
     const { idVenta } = req.params;
-    const query = `select * from ventas where id = ?`;
+    const query = `select v.id, v.idPacientes, concat(p.nombres,' ',p.apellidoPaterno,' ', p.apellidoMaterno) paciente ,v.fecha, v.total from ventas v join pacientes p on v.idPacientes = p.id where v.id = ?`;
     mysqlConnection.query(query, [idVenta], async(err, rows, fields) => {
         if (!err) {
             var ventas_medicamentos = await axiosController.getAxios(config.host + '/ventas/' + idVenta + '/medicamentos');
