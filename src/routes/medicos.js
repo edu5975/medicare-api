@@ -25,6 +25,47 @@ from medicos m join especialidades e on e.id = m.idEspecialidades
     });
 });
 
+// POST busqueda de medicos
+router.post('/medicos/busqueda', (req, res) => {
+    const { idEspecialidades, pais, estado, servicios } = req.body;
+    var query = `
+    select *
+    from medicos
+    `;
+    if (Object.keys(req.body).length !== 0) {
+        query += " where "
+        if (idEspecialidades) {
+            query += " idEspecialidades = " + idEspecialidades + " "
+            if (pais || estado || servicios)
+                query += " or "
+        }
+        if (pais) {
+            query += " pais = '" + pais + "' "
+            if (estado || servicios)
+                query += " or "
+        }
+        if (estado) {
+            query += " estado = '" + estado + "' "
+            if (servicios)
+                query += " or "
+        }
+        if (servicios)
+            query += " " + servicios + " in (select idMedicos from servicios_medicos where idMedicos = id)"
+    }
+    console.log(query)
+
+    mysqlConnection.query(query, (err, rows, fields) => {
+        if (!err) {
+            if (rows.length != 0)
+                res.status(200).send(rows)
+            else
+                res.status(404).send({ message: 'Medicos not found' })
+        } else {
+            res.status(500).send({ message: err })
+        }
+    });
+});
+
 // GET un medico
 router.get('/medicos/:id', (req, res) => {
     const { id } = req.params;

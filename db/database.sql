@@ -555,4 +555,10 @@ insert into medicos_consultas(idMedicos, idConsultas) values
 
 insert into medicos_consultas(idMedicos, idConsultas) values (1,1);
 
-select * from medicos_consultas mc join medicos m on mc.idConsultas = m.id where idMedicos = 1 and idConsultas = ?;
+select * from medicos where pais = 'Mexico'
+
+select * from servicios_medicos
+
+select *
+from medicos
+where idEspecialidades = ? or pais = ? or estado = ? or ? in (select idMedicos from servicios_medicos where idMedicos = id);
