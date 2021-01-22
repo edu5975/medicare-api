@@ -21,6 +21,7 @@ drop table if exists pacientes;
 drop table if exists enfermedades;
 drop table if exists alergias;
 drop table if exists cirugias;
+drop table if exists medicos_consultas;
 drop table if exists medicos;
 drop table if exists especialidades;
 drop table if exists servicios;
@@ -195,6 +196,14 @@ create table ventas_medicamentos(
     constraint primary key (idMedicamentos,idVentas),
     constraint foreign key (idVentas) references ventas(id) on delete cascade,
     constraint foreign key (idMedicamentos) references medicamentos(id) on delete cascade
+);
+
+create table medicos_consultas(
+    idMedicos integer,
+    idConsultas integer,
+    constraint primary key (idMedicos,idConsultas),
+    constraint foreign key (idMedicos) references medicos(id) on delete cascade,
+    constraint foreign key (idConsultas) references medicos(id) on delete cascade
 );
 
 insert into alergias(descripcion) values ('Polen'),('Polvo'),('Moho'),('Latex'),('Pasto'),('Nuez'),('Cacahuate'),('Fresa'),
@@ -537,66 +546,13 @@ insert into covid(idPaciente, idMedico, estado, fecha) values
 ((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Confirmado',curdate()),
 ((select id from pacientes order by rand() limit 1),(select id from medicos order by rand() limit 1),'Curado',curdate());
 
+insert into medicos_consultas(idMedicos, idConsultas) values
+((select id from medicos order by rand() limit 1),(select id from consultas order by rand() limit 1)),
+((select id from medicos order by rand() limit 1),(select id from consultas order by rand() limit 1)),
+((select id from medicos order by rand() limit 1),(select id from consultas order by rand() limit 1)),
+((select id from medicos order by rand() limit 1),(select id from consultas order by rand() limit 1)),
+((select id from medicos order by rand() limit 1),(select id from consultas order by rand() limit 1));
 
-select p.pais, p.estado, p.municipio, count(distinct p.id) as total
-from pacientes p
-join covid c on p.id = c.idPaciente
-where pais = 'Mexico' and p.estado = 'Guanajuato' and municipio = 'Celaya'
-group by p.id and p.pais, p.estado, p.municipio
-order by p.id desc;
+insert into medicos_consultas(idMedicos, idConsultas) values (1,1);
 
-select p.pais, p.estado, p.municipio, count(distinct p.id) as total
-from pacientes p
-join covid c on p.id = c.idPaciente
-where pais = 'Mexico' and p.estado = 'Guanajuato'
-group by p.id and p.pais, p.estado, p.municipio
-order by p.id desc;
-
-select p.pais, p.estado, count(distinct p.id) as total
-from pacientes p
-join covid c on p.id = c.idPaciente
-where pais = 'Mexico'
-group by p.id and p.pais, p.estado
-order by p.id desc;
-
-select p.pais,count(distinct p.id) as total,
-    SUM(IF(c.estado = 'Curado', 1, 0)) curados,
-    SUM(IF(c.estado = 'Sospechoso', 1, 0)) sospechosos,
-    SUM(IF(c.estado = 'Confirmado', 1, 0)) confirmados
-from pacientes p
-join covid c on p.id = c.idPaciente
-group by p.pais;
-
-select p.pais,p.estado,count(distinct p.id) as total,
-    SUM(IF(c.estado = 'Curado', 1, 0)) curados,
-    SUM(IF(c.estado = 'Sospechoso', 1, 0)) sospechosos,
-    SUM(IF(c.estado = 'Confirmado', 1, 0)) confirmados
-from pacientes p
-join covid c on p.id = c.idPaciente
-where p.pais = 'Mexico'
-group by p.pais,p.estado;
-
-select p.pais as estado, p.pais,p.estado,count(distinct p.id) as total,
-    SUM(IF(c.estado = 'Curado', 1, 0)) curados,
-    SUM(IF(c.estado = 'Sospechoso', 1, 0)) sospechosos,
-    SUM(IF(c.estado = 'Confirmado', 1, 0)) confirmados
-    from pacientes p
-    join covid c on p.id = c.idPaciente
-    where p.pais = 'Mexico'
-    group by p.pais,p.estado;
-
-select p.pais as string, p.pais,count(distinct p.id) as total,
-    SUM(IF(c.estado = 'Curado', 1, 0)) curados,
-    SUM(IF(c.estado = 'Sospechoso', 1, 0)) sospechosos,
-    SUM(IF(c.estado = 'Confirmado', 1, 0)) confirmados
-    from pacientes p
-    join covid c on p.id = c.idPaciente
-    group by p.pais;
-
-select * from especialidades;
-
-select * from medicamentos;
-
-select * from medicamentos;
-
-
+select * from medicos_consultas mc join medicos m on mc.idConsultas = m.id where idMedicos = 1 and idConsultas = ?;
