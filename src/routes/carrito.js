@@ -24,7 +24,7 @@ router.post('/carrito', (req, res) => {
 // GET carrito de un paciente
 router.get('/pacientes/:idPacientes/carrito', (req, res) => {
     const { idPacientes } = req.params;
-    mysqlConnection.query('select c.cantidad, m.id, m.nombre, m.descripcion, m.descripcion, m.foto from carrito c join medicamentos m on c.idMedicamentos = m.id where c.idPacientes = ? ', [idPacientes], (err, rows, fields) => {
+    mysqlConnection.query('select idPacientes, idMedicamentos, sum(cantidad) cantidad, m.id, m.nombre, m.descripcion, m.foto, m.costo from carrito c join medicamentos m on c.idMedicamentos = m.id where idPacientes = ? group by idMedicamentos,idPacientes;    ', [idPacientes], (err, rows, fields) => {
         if (!err) {
             if (rows.length != 0)
                 res.status(200).send(rows)
