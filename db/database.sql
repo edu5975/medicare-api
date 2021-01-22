@@ -170,8 +170,6 @@ create table consultas_media(
     constraint foreign key (idConsulta) references consultas(id) on delete cascade
 );
 
-drop table carrito;
-
 create table carrito(
     idPacientes integer,
     idMedicamentos integer,
@@ -556,14 +554,11 @@ insert into medicos_consultas(idMedicos, idConsultas) values
 
 insert into medicos_consultas(idMedicos, idConsultas) values (1,1);
 
-select * from covid;
+select c.id,c.idPaciente,concat(p.nombres,' ',p.apellidoPaterno,' ',p.apellidoMaterno) paciente,c.idEspecialidad,e.descripcion,c.sintomas,c.estado,c.fecha from consultas c join especialidades e on e.id = c.idEspecialidad join pacientes p on p.id = c.idPaciente;
 
-select * from medicamentos;
 
-select idPacientes, idMedicamentos, sum(cantidad) cantidad, m.id, m.nombre, m.descripcion, m.foto, m.costo from carrito c join medicamentos m on c.idMedicamentos = m.id where idPacientes = ? group by idMedicamentos,idPacientes;
 
-select * from carrito;
 
-select c.id, c.idPaciente, c.idMedico, c.estado, c.fecha, concat(p.nombres,' ',p.apellidoPaterno,' ', p.apellidoMaterno) paciente, concat(p.nombres,' ',p.apellidoPaterno,' ', p.apellidoMaterno) medico from covid c join medicos m on m.id = c.idMedico join pacientes p on c.idPaciente = p.id;
 
-select v.id, v.idPacientes, concat(p.nombres,' ',p.apellidoPaterno,' ', p.apellidoMaterno) paciente ,v.fecha, v.total from ventas v join pacientes p on v.idPacientes = p.id
+
+

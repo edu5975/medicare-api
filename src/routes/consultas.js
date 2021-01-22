@@ -7,7 +7,7 @@ const config = require('../config.js')
 
 // GET todas las consultas
 router.get('/consultas', (req, res) => {
-    mysqlConnection.query('SELECT * FROM consultas', (err, rows, fields) => {
+    mysqlConnection.query("select c.id,c.idPaciente,concat(p.nombres,' ',p.apellidoPaterno,' ',p.apellidoMaterno) paciente,c.idEspecialidad,e.descripcion,c.sintomas,c.estado,c.fecha from consultas c join especialidades e on e.id = c.idEspecialidad join pacientes p on p.id = c.idPaciente;", (err, rows, fields) => {
         if (!err) {
             if (rows.length != 0)
                 res.status(200).send(rows)
