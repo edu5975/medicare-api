@@ -144,7 +144,7 @@ router.get('/covide/:pais/:estado/:municipio', (req, res) => {
 
 // GET todos covid
 router.get('/covid', (req, res) => {
-    mysqlConnection.query('SELECT * FROM covid', (err, rows, fields) => {
+    mysqlConnection.query("select c.id, c.idPaciente, c.idMedico, c.estado, c.fecha, concat(p.nombres,' ',p.apellidoPaterno,' ', p.apellidoMaterno) paciente, concat(m.nombres,' ',m.apellidoPaterno,' ', m.apellidoMaterno) medico from covid c join medicos m on m.id = c.idMedico join pacientes p on c.idPaciente = p.id", (err, rows, fields) => {
         if (!err) {
             if (rows.length != 0)
                 res.status(200).send(rows)
@@ -159,7 +159,7 @@ router.get('/covid', (req, res) => {
 // GET un covid
 router.get('/covid/:id', (req, res) => {
     const { id } = req.params;
-    mysqlConnection.query('SELECT * FROM covid WHERE id = ?', [id], (err, rows, fields) => {
+    mysqlConnection.query("select c.id, c.idPaciente, c.idMedico, c.estado, c.fecha, concat(p.nombres,' ',p.apellidoPaterno,' ', p.apellidoMaterno) paciente, concat(m.nombres,' ',m.apellidoPaterno,' ', m.apellidoMaterno) medico from covid c join medicos m on m.id = c.idMedico join pacientes p on c.idPaciente = p.id where c.id = ?", [id], (err, rows, fields) => {
         if (!err) {
             if (rows.length != 0)
                 res.status(200).send(rows[0])

@@ -555,4 +555,10 @@ insert into medicos_consultas(idMedicos, idConsultas) values
 
 insert into medicos_consultas(idMedicos, idConsultas) values (1,1);
 
+select * from covid;
+
+select * from medicamentos;
+
+select c.id, c.idPaciente, c.idMedico, c.estado, c.fecha, concat(p.nombres,' ',p.apellidoPaterno,' ', p.apellidoMaterno) paciente, concat(p.nombres,' ',p.apellidoPaterno,' ', p.apellidoMaterno) medico from covid c join medicos m on m.id = c.idMedico join pacientes p on c.idPaciente = p.id;
+
 select v.id, v.idPacientes, concat(p.nombres,' ',p.apellidoPaterno,' ', p.apellidoMaterno) paciente ,v.fecha, v.total from ventas v join pacientes p on v.idPacientes = p.id
