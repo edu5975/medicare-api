@@ -129,6 +129,22 @@ router.get('/pacientes/:idPacientes/consultas/:idConsultas', (req, res) => {
     mysqlConnection.query(query, [idPacientes, idConsultas], async(err, rows, fields) => {
         if (!err) {
             if (rows.length != 0) {
+                var especialidades = await axiosController.getAxios(config.host + '/especialidades/' + rows[0].idEspecialidad);
+                if (especialidades.id) {
+                    rows[0].especialidades = especialidades;
+                }
+                var consultas_media = await axiosController.getAxios(config.host + '/consultas/' + rows[0].id + '/media');
+                if (consultas_media.length) {
+                    rows[0].consultas_media = consultas_media;
+                }
+                var recetas = await axiosController.getAxios(config.host + '/recetas/' + rows[0].id);
+                if (recetas.idConsulta) {
+                    rows[0].recetas = recetas;
+                }
+                var pacientes = await axiosController.getAxios(config.host + '/pacientes/' + rows[0].idPaciente);
+                if (pacientes.id) {
+                    rows[0].pacientes = pacientes;
+                }
                 res.status(200).send(rows[0]);
             } else
                 res.status(404).send({ message: 'Consulta not found' })
