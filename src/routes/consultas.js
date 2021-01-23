@@ -124,7 +124,7 @@ router.get('/pacientes/:idPacientes/consultas', (req, res) => {
 router.get('/pacientes/:idPacientes/consultas/:idConsultas', (req, res) => {
     const { idPacientes, idConsultas } = req.params;
     const query = `
-    select c.id,c.idPaciente,concat(p.nombres,' ',p.apellidoPaterno,' ',p.apellidoMaterno) paciente,c.idEspecialidad,e.descripcion,c.sintomas,c.estado,c.fecha from consultas c join especialidades e on e.id = c.idEspecialidad join pacientes p on p.id = c.idPaciente where c.idPaciente = ? and id=?;
+    select c.id,c.idPaciente,concat(p.nombres,' ',p.apellidoPaterno,' ',p.apellidoMaterno) paciente,c.idEspecialidad,e.descripcion,c.sintomas,c.estado,c.fecha from consultas c join especialidades e on e.id = c.idEspecialidad join pacientes p on p.id = c.idPaciente where c.idPaciente = ? and c.id=?;
   `;
     mysqlConnection.query(query, [idPacientes, idConsultas], async(err, rows, fields) => {
         if (!err) {
