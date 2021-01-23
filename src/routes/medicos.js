@@ -37,17 +37,17 @@ router.post('/medicos/busqueda', (req, res) => {
         if (idEspecialidades) {
             query += " idEspecialidades = " + idEspecialidades + " "
             if (pais || estado || servicios)
-                query += " or "
+                query += " and "
         }
         if (pais) {
             query += " pais = '" + pais + "' "
             if (estado || servicios)
-                query += " or "
+                query += " and "
         }
         if (estado) {
             query += " estado = '" + estado + "' "
             if (servicios)
-                query += " or "
+                query += " and "
         }
         if (servicios)
             query += " " + servicios + " in (select idMedicos from servicios_medicos where idMedicos = id)"
