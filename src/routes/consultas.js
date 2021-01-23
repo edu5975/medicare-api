@@ -106,7 +106,7 @@ router.put('/consultas/:id', (req, res) => {
 router.get('/pacientes/:idPacientes/consultas', (req, res) => {
     const { idPacientes } = req.params;
     const query = `
-    select * from consultas where idPaciente = ?;
+    select c.id,c.idPaciente,concat(p.nombres,' ',p.apellidoPaterno,' ',p.apellidoMaterno) paciente,c.idEspecialidad,e.descripcion,c.sintomas,c.estado,c.fecha from consultas c join especialidades e on e.id = c.idEspecialidad join pacientes p on p.id = c.idPaciente where idPaciente = ?;
   `;
     mysqlConnection.query(query, [idPacientes], async(err, rows, fields) => {
         if (!err) {
@@ -124,7 +124,7 @@ router.get('/pacientes/:idPacientes/consultas', (req, res) => {
 router.get('/pacientes/:idPacientes/consultas/:idConsultas', (req, res) => {
     const { idPacientes, idConsultas } = req.params;
     const query = `
-    select * from consultas where idPaciente = ? and id=?;
+    select c.id,c.idPaciente,concat(p.nombres,' ',p.apellidoPaterno,' ',p.apellidoMaterno) paciente,c.idEspecialidad,e.descripcion,c.sintomas,c.estado,c.fecha from consultas c join especialidades e on e.id = c.idEspecialidad join pacientes p on p.id = c.idPaciente where c.idPaciente = ? and id=?;
   `;
     mysqlConnection.query(query, [idPacientes, idConsultas], async(err, rows, fields) => {
         if (!err) {

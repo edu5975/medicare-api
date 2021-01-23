@@ -556,6 +556,10 @@ insert into medicos_consultas(idMedicos, idConsultas) values (1,1);
 
 select c.id,c.idPaciente,concat(p.nombres,' ',p.apellidoPaterno,' ',p.apellidoMaterno) paciente,c.idEspecialidad,e.descripcion,c.sintomas,c.estado,c.fecha from consultas c join especialidades e on e.id = c.idEspecialidad join pacientes p on p.id = c.idPaciente;
 
+select * from medicos_consultas where idConsultas = ?
+
+select * from consultas_media
+
 
 
 
