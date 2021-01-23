@@ -25,7 +25,7 @@ router.post('/consultas', (req, res) => {
     const estado = "Sin responder"
     const query = `
     insert into consultas(idPaciente, idEspecialidad, sintomas, estado, fecha) values
-    (?,?,?,?,current_date)
+    (?,?,?,?,current_timestamp())
   `;
     fecha = Date.now();
     mysqlConnection.query(query, [idPaciente, idEspecialidad, sintomas, estado], (err, rows, fields) => {
