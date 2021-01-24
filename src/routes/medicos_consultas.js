@@ -17,6 +17,20 @@ router.get('/medicos/:id/consultas', (req, res) => {
     });
 });
 
+router.get('/pacientes/consultas/:id/medicos', (req, res) => {
+    const { id } = req.params;
+    mysqlConnection.query("select idMedicos, idConsultas, concat(m.nombres,' ',m.apellidoMaterno,' ',m.apellidoPaterno), m.telefono, m.email, m.pais, m.estado, m.municipio medico from medicos_consultas mc join medicos m on mc.idMedicos = m.id join consultas c on c.id = mc.idConsultas join pacientes p on c.idPaciente = p.id where idConsultas = ?    ", [id], (err, rows, fields) => {
+        if (!err) {
+            if (rows.length != 0)
+                res.status(200).send(rows)
+            else
+                res.status(404).send({ message: 'not found' })
+        } else {
+            res.status(500).send({ message: err })
+        }
+    });
+});
+
 //GET medico y consulta especifica
 router.get('/medicos/:idMedicos/consultas/:idConsultas', (req, res) => {
     const { idMedicos, idConsultas } = req.params;

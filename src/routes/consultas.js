@@ -79,6 +79,10 @@ router.get('/consultas/:id', (req, res) => {
                 if (recetas.idConsulta) {
                     rows[0].recetas = recetas;
                 }
+                var medicos = await axiosController.getAxios(config.host + '/pacientes/consultas/' + id + '/medicos');
+                if (medicos.length) {
+                    rows[0].medicos = medicos;
+                }
                 var pacientes = await axiosController.getAxios(config.host + '/pacientes/' + rows[0].idPaciente);
                 if (pacientes.id) {
                     rows[0].pacientes = pacientes;
