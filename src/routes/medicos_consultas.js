@@ -5,7 +5,7 @@ const mysqlConnection = require('../database.js');
 
 router.get('/medicos/:id/consultas', (req, res) => {
     const { id } = req.params;
-    mysqlConnection.query('select * from medicos_consultas mc join medicos m on mc.idMedicos = m.id where idMedicos = ?', [id], (err, rows, fields) => {
+    mysqlConnection.query("select idMedicos, idConsultas, concat(p.nombres,' ',p.apellidoMaterno,' ',p.apellidoPaterno) paciente, c.sintomas from medicos_consultas mc join medicos m on mc.idMedicos = m.id join consultas c on c.id = mc.idConsultas join pacientes p on c.idPaciente = p.id where idMedicos = ?    ", [id], (err, rows, fields) => {
         if (!err) {
             if (rows.length != 0)
                 res.status(200).send(rows)
