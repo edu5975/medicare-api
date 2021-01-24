@@ -49,14 +49,14 @@ router.delete('/recetas/:idRecetas/medicamentos/:idMedicamentos', (req, res) => 
 router.post('/recetas/:idRecetas/medicamentos/:idMedicamentos', (req, res) => {
     const { idRecetas, idMedicamentos } = req.params;
     const { dosis } = req.body;
-    const query = `insert into recetas_medicamentos(idRecetas, idMedicamentos,descripcion) values (?,?,?)`;
+    const query = `insert into recetas_medicamentos(idRecetas, idMedicamentos,dosis) values (?,?,?)`;
     mysqlConnection.query(query, [idRecetas, idMedicamentos, dosis], (err, rows, fields) => {
         if (!err) {
             res.status(200).send({
                 status: ' Saved',
                 idRecetas,
                 idMedicamentos,
-                descripcion
+                dosis
             });
         } else {
             res.status(500).send({ message: err })
