@@ -5,7 +5,7 @@ const mysqlConnection = require('../database.js');
 
 router.get('/medicos/:id/consultas', (req, res) => {
     const { id } = req.params;
-    mysqlConnection.query('select * from medicos_consultas mc join medicos m on mc.idConsultas = m.id where idMedicos = ?', [id], (err, rows, fields) => {
+    mysqlConnection.query('select * from medicos_consultas mc join medicos m on mc.idMedicos = m.id where idMedicos = ?', [id], (err, rows, fields) => {
         if (!err) {
             if (rows.length != 0)
                 res.status(200).send(rows)
