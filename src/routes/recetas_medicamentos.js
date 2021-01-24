@@ -50,7 +50,7 @@ router.post('/recetas/:idRecetas/medicamentos/:idMedicamentos', (req, res) => {
     const { idRecetas, idMedicamentos } = req.params;
     const { dosis } = req.body;
     const query = `insert into recetas_medicamentos(idRecetas, idMedicamentos,descripcion) values (?,?,?)`;
-    mysqlConnection.query(query, [idRecetas, idMedicamentos], (err, rows, fields) => {
+    mysqlConnection.query(query, [idRecetas, idMedicamentos, dosis], (err, rows, fields) => {
         if (!err) {
             res.status(200).send({
                 status: ' Saved',
