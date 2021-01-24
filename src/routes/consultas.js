@@ -19,6 +19,21 @@ router.get('/consultas', (req, res) => {
     });
 });
 
+// GET todas las consultas
+router.get('/consultas/especialidades/:idEspecialidad', (req, res) => {
+    const { idEspecialidad } = req.params;
+    mysqlConnection.query("select c.id,c.idPaciente,concat(p.nombres,' ',p.apellidoPaterno,' ',p.apellidoMaterno) paciente,c.idEspecialidad,e.descripcion,c.sintomas,c.estado,c.fecha from consultas c join especialidades e on e.id = c.idEspecialidad join pacientes p on p.id = c.idPaciente where e.id = ? and c.id not in (select idConsultas from medicos_consultas)", [idEspecialidad], (err, rows, fields) => {
+        if (!err) {
+            if (rows.length != 0)
+                res.status(200).send(rows)
+            else
+                res.status(404).send({ message: 'Consultas not found' })
+        } else {
+            res.status(500).send({ message: err })
+        }
+    });
+});
+
 // INSERT una consulta
 router.post('/consultas', (req, res) => {
     const { idPaciente, idEspecialidad, sintomas } = req.body;
