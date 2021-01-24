@@ -158,7 +158,7 @@ create table medicamentos(
 create table recetas_medicamentos(
     idRecetas integer,
     idMedicamentos integer,
-    constraint primary key (idRecetas,idMedicamentos),
+    dosis varchar(70),
     constraint foreign key (idRecetas) references recetas(idConsulta) on delete cascade,
     constraint foreign key (idMedicamentos) references medicamentos(id) on delete cascade
 );
@@ -497,8 +497,8 @@ insert into medicamentos(nombre, descripcion, costo, foto) values
 ('Lansoprazol','Para controlar el ácido del estómago, se encarga también de disminuir la cantidad de ácido producido en el estómago y se usa para tratar y prevenir las úlceras en este órgano y en el intestino y para controlar el ardor.'
 ,88,'Lansoprazol.png');
 
-insert into recetas_medicamentos(idRecetas, idMedicamentos) values
-(1,1),(1,2),(1,3),(1,4),(2,5),(2,6),(2,7),(2,8);
+insert into recetas_medicamentos(idRecetas, idMedicamentos,dosis) values
+(1,1,'algo'),(1,2,'algo'),(1,3,'algo'),(1,4,'algo'),(2,5,'algo'),(2,6,'algo'),(2,7,'algo'),(2,8,'algo');
 
 insert into consultas_media(idConsulta, media) values
 (1,'url 1'),(2,'url 2'),(1,'url 3');
