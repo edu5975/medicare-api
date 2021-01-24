@@ -559,6 +559,10 @@ select c.id,c.idPaciente,concat(p.nombres,' ',p.apellidoPaterno,' ',p.apellidoMa
 select * from medicos_consultas where idConsultas = 1
 select * from medicos_consultas mc join medicos m on mc.idMedicos = m.id join consultas c on c.id = mc.idConsultas join pacientes p on c.idPaciente = p.id where idConsultas = ?
 
+select * from medicos where id = 103
+
+select idMedicos, idConsultas, concat(m.nombres,' ',m.apellidoMaterno,' ',m.apellidoPaterno) medico, m.telefono, m.email, m.pais, m.estado, m.municipio medico from medicos_consultas mc join medicos m on mc.idMedicos = m.id join consultas c on c.id = mc.idConsultas join pacientes p on c.idPaciente = p.id where idConsultas = ?
+
 select * from medicos_consultas mc join medicos m on mc.idConsultas = m.id join consultas c on m.estado = c.estado join
 
 select c.id,c.idPaciente,concat(p.nombres,' ',p.apellidoPaterno,' ',p.apellidoMaterno) paciente,c.idEspecialidad,e.descripcion,c.sintomas,c.estado,c.fecha from consultas c join especialidades e on e.id = c.idEspecialidad join pacientes p on p.id = c.idPaciente where e.id = ? and c.id not in (select idConsultas from medicos_consultas)
