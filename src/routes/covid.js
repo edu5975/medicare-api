@@ -51,7 +51,7 @@ router.get('/mundo/:pais/:estado', (req, res) => {
 // GET paises
 router.get('/covide', (req, res) => {
     const query = `
-    select p.pais as string, p.pais,count(distinct p.id) as total,
+    select p.pais as string, p.pais,count(*) as total,
     SUM(IF(c.estado = 'Curado', 1, 0)) curados,
     SUM(IF(c.estado = 'Sospechoso', 1, 0)) sospechosos,
     SUM(IF(c.estado = 'Confirmado', 1, 0)) confirmados

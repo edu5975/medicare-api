@@ -554,24 +554,20 @@ insert into medicos_consultas(idMedicos, idConsultas) values
 
 insert into medicos_consultas(idMedicos, idConsultas) values (1,1);
 
-select c.id,c.idPaciente,concat(p.nombres,' ',p.apellidoPaterno,' ',p.apellidoMaterno) paciente,c.idEspecialidad,e.descripcion,c.sintomas,c.estado,c.fecha from consultas c join especialidades e on e.id = c.idEspecialidad join pacientes p on p.id = c.idPaciente;
+insert into pacientes(nombres, apellidoPaterno, apellidoMaterno, direccion, municipio, estado, pais, nacimiento, telefono, email, user, password)
+values
+('Eduardo Daniel','Rico','Gómez','Prol. Jacarandas 1010','Arag','Aragon','España','1999/07/23','4611842703','edu.dan682@gmail.com','edu59752','edu5975'),
+('Julio César','García','Escoto','Arboledas 404','Canta','Cantabria','España','1999/05/10','4645793708','zeth2@gmail.com','zeth2','zeth');
 
-select * from medicos_consultas where idConsultas = 1
-select * from medicos_consultas mc join medicos m on mc.idMedicos = m.id join consultas c on c.id = mc.idConsultas join pacientes p on c.idPaciente = p.id where idConsultas = ?
+insert into covid(idPaciente, idMedico, estado, fecha) values
+(109,3,'Confirmado',current_timestamp),(110,3,'Sospechoso',current_timestamp);
 
-select * from medicos where id = 103
+insert into pacientes(nombres, apellidoPaterno, apellidoMaterno, direccion, municipio, estado, pais, nacimiento, telefono, email, user, password)
+values
+('Eduardo Daniel','Rico','Gómez','Prol. Jacarandas 1010','Cor','Corrientes','Argentina','1999/07/23','4611842703','edu.dan682@gmail.com','edu59752','edu5975'),
+('Julio César','García','Escoto','Arboledas 404','Pampa','La pampa','Angentina','1999/05/10','4645793708','zeth2@gmail.com','zeth2','zeth');
 
-select idMedicos, idConsultas, concat(m.nombres,' ',m.apellidoMaterno,' ',m.apellidoPaterno) medico, m.telefono, m.email, m.pais, m.estado, m.municipio medico from medicos_consultas mc join medicos m on mc.idMedicos = m.id join consultas c on c.id = mc.idConsultas join pacientes p on c.idPaciente = p.id where idConsultas = ?
-
-select * from medicos_consultas mc join medicos m on mc.idConsultas = m.id join consultas c on m.estado = c.estado join
-
-select c.id,c.idPaciente,concat(p.nombres,' ',p.apellidoPaterno,' ',p.apellidoMaterno) paciente,c.idEspecialidad,e.descripcion,c.sintomas,c.estado,c.fecha from consultas c join especialidades e on e.id = c.idEspecialidad join pacientes p on p.id = c.idPaciente where e.id = ? and c.id not in (select idConsultas from medicos_consultas)
-
-insert into registro_incidencias(fecha_registro_incidencia, hora, entrada_salida, descripcion_incidencia, nombre_vigilante)
-values('2021/01/25','15:27','Entrada','Ejemplo de entrada','Juan Casas');
-
-
-select * from registro_incidencias
-
+insert into covid(idPaciente, idMedico, estado, fecha) values
+(111,3,'Confirmado',current_timestamp),(112,3,'Sospechoso',current_timestamp);
 
 
