@@ -567,9 +567,11 @@ select * from medicos_consultas mc join medicos m on mc.idConsultas = m.id join 
 
 select c.id,c.idPaciente,concat(p.nombres,' ',p.apellidoPaterno,' ',p.apellidoMaterno) paciente,c.idEspecialidad,e.descripcion,c.sintomas,c.estado,c.fecha from consultas c join especialidades e on e.id = c.idEspecialidad join pacientes p on p.id = c.idPaciente where e.id = ? and c.id not in (select idConsultas from medicos_consultas)
 
+insert into registro_incidencias(fecha_registro_incidencia, hora, entrada_salida, descripcion_incidencia, nombre_vigilante)
+values('2021/01/25','15:27','Entrada','Ejemplo de entrada','Juan Casas');
 
 
-
+select * from registro_incidencias
 
 
 

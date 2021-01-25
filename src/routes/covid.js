@@ -74,7 +74,7 @@ router.get('/covide', (req, res) => {
 router.get('/covide/:pais', (req, res) => {
     const { pais } = req.params;
     const query = `
-    select p.estado as string, p.pais,p.estado,count(distinct p.id) as total,
+    select p.estado as string, p.pais,p.estado,count(*) as total,
     SUM(IF(c.estado = 'Curado', 1, 0)) curados,
     SUM(IF(c.estado = 'Sospechoso', 1, 0)) sospechosos,
     SUM(IF(c.estado = 'Confirmado', 1, 0)) confirmados
@@ -98,7 +98,7 @@ router.get('/covide/:pais', (req, res) => {
 router.get('/covide/:pais/:estado', (req, res) => {
     const { pais, estado } = req.params;
     const query = `
-    select p.municipio as string, p.pais,p.estado,p.municipio,count(distinct p.id) as total,
+    select p.municipio as string, p.pais,p.estado,p.municipio,count(*) as total,
     SUM(IF(c.estado = 'Curado', 1, 0)) curados,
     SUM(IF(c.estado = 'Sospechoso', 1, 0)) sospechosos,
     SUM(IF(c.estado = 'Confirmado', 1, 0)) confirmados
@@ -122,7 +122,7 @@ router.get('/covide/:pais/:estado', (req, res) => {
 router.get('/covide/:pais/:estado/:municipio', (req, res) => {
     const { pais, estado, municipio } = req.params;
     const query = `
-    select p.municipio as string, p.pais,p.estado,p.municipio,count(distinct p.id) as total,
+    select p.municipio as string, p.pais,p.estado,p.municipio,count(*) as total,
     SUM(IF(c.estado = 'Curado', 1, 0)) curados,
     SUM(IF(c.estado = 'Sospechoso', 1, 0)) sospechosos,
     SUM(IF(c.estado = 'Confirmado', 1, 0)) confirmados
