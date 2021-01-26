@@ -18,6 +18,24 @@ router.get('/medicamentos', (req, res) => {
     });
 });
 
+
+// POST busqueda de medicamentos
+router.post('/medicamentos/busqueda', (req, res) => {
+    var { nombre } = req.body;
+    if (!nombre)
+        nombre = "";
+    mysqlConnection.query("select * from medicamentos where nombre like '%" + nombre + "%'", (err, rows, fields) => {
+        if (!err) {
+            if (rows.length != 0)
+                res.status(200).send(rows)
+            else
+                res.status(404).send({ message: 'medicamentos not found' })
+        } else {
+            res.status(500).send({ message: err })
+        }
+    });
+});
+
 // GET una medicamento
 router.get('/medicamentos/:id', (req, res) => {
     const { id } = req.params;
