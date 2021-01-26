@@ -565,9 +565,11 @@ insert into covid(idPaciente, idMedico, estado, fecha) values
 insert into pacientes(nombres, apellidoPaterno, apellidoMaterno, direccion, municipio, estado, pais, nacimiento, telefono, email, user, password)
 values
 ('Eduardo Daniel','Rico','Gómez','Prol. Jacarandas 1010','Cor','Corrientes','Argentina','1999/07/23','4611842703','edu.dan682@gmail.com','edu59752','edu5975'),
-('Julio César','García','Escoto','Arboledas 404','Pampa','La pampa','Angentina','1999/05/10','4645793708','zeth2@gmail.com','zeth2','zeth');
+('Julio César','García','Escoto','Arboledas 404','Pampa','La pampa','Argentina','1999/05/10','4645793708','zeth2@gmail.com','zeth2','zeth');
 
 insert into covid(idPaciente, idMedico, estado, fecha) values
 (111,3,'Confirmado',current_timestamp),(112,3,'Sospechoso',current_timestamp);
 
+
+update pacientes set pais = 'Argentina' where pais = 'Angentina'
 
