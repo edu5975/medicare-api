@@ -34,22 +34,22 @@ router.post('/medicos/busqueda', (req, res) => {
     `;
     if (Object.keys(req.body).length !== 0) {
         query += " where "
-        if (idEspecialidades) {
+        if (idEspecialidades && idEspecialidades != "") {
             query += " idEspecialidades = " + idEspecialidades + " "
             if (pais || estado || servicios)
                 query += " and "
         }
-        if (pais) {
+        if (pais && pais != "") {
             query += " pais = '" + pais + "' "
             if (estado || servicios)
                 query += " and "
         }
-        if (estado) {
+        if (estado && estado != "") {
             query += " estado = '" + estado + "' "
             if (servicios)
                 query += " and "
         }
-        if (servicios)
+        if (servicios && estado != "")
             query += " " + servicios + " in (select idMedicos from servicios_medicos where idMedicos = id)"
     }
     console.log(query)
