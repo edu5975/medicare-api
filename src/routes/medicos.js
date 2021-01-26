@@ -150,10 +150,10 @@ router.put('/medicos/:id', (req, res) => {
     const { id } = req.params;
     const query = `
     update medicos set nombres = ?, apellidoPaterno = ?, apellidoMaterno = ?, cedula = ?,
-direccion = ?, municipio = ?, estado = ?, pais = ?, telefono = ?, email = ?, user = ?, password = ?, idEspecialidades =?
+direccion = ?, municipio = ?, estado = ?, pais = ?, telefono = ?, email = ?, user = ?, idEspecialidades =?
 where id = ?;;
   `;
-    mysqlConnection.query(query, [nombres, apellidoPaterno, apellidoMaterno, cedula, direccion, municipio, estado, pais, telefono, email, user, password, idEspecialidades, id], (err, rows, fields) => {
+    mysqlConnection.query(query, [nombres, apellidoPaterno, apellidoMaterno, cedula, direccion, municipio, estado, pais, telefono, email, user, idEspecialidades, id], (err, rows, fields) => {
         if (!err) {
             if (rows.changedRows != 0)
                 res.status(200).send({
@@ -170,7 +170,6 @@ where id = ?;;
                     telefono,
                     email,
                     user,
-                    password,
                     idEspecialidades
                 });
             else
