@@ -46,6 +46,18 @@ router.delete('/pacientes/:idPacientes/cirugias/:idCirugias', (req, res) => {
     });
 });
 
+// DELETE todas las cirugias de un paciente
+router.delete('/pacientes/:idPacientes/cirugias', (req, res) => {
+    const { idPacientes } = req.params;
+    mysqlConnection.query('delete from pacientes_cirugias where idPacientes = ?', [idPacientes], (err, rows, fields) => {
+        if (!err) {
+            res.status(200).send({ status: 'Paciente ' + idPacientes + ' se borro las cirugias ' });
+        } else {
+            res.status(500).send({ message: err })
+        }
+    });
+});
+
 // INSERT una cirugia a un paciente
 router.post('/pacientes/:idPacientes/cirugias/:idCirugias', (req, res) => {
     const { idPacientes, idCirugias } = req.params;

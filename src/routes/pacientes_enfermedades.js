@@ -46,6 +46,18 @@ router.delete('/pacientes/:idPacientes/enfermedades/:idEnfermedades', (req, res)
     });
 });
 
+// DELETE todas las enfermedades de un paciente
+router.delete('/pacientes/:idPacientes/enfermedades', (req, res) => {
+    const { idPacientes } = req.params;
+    mysqlConnection.query('delete from pacientes_enfermedades where idPacientes = ?', [idPacientes], (err, rows, fields) => {
+        if (!err) {
+            res.status(200).send({ status: 'Paciente ' + idPacientes + ' se borro las enfermedades ' });
+        } else {
+            res.status(500).send({ message: err })
+        }
+    });
+});
+
 // INSERT una enfermedad a un paciente
 router.post('/pacientes/:idPacientes/enfermedades/:idEnfermedades', (req, res) => {
     const { idPacientes, idEnfermedades } = req.params;

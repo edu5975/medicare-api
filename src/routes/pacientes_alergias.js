@@ -46,6 +46,18 @@ router.delete('/pacientes/:idPacientes/alergias/:idAlergias', (req, res) => {
     });
 });
 
+// DELETE todas las alergias de un paciente
+router.delete('/pacientes/:idPacientes/alergias', (req, res) => {
+    const { idPacientes } = req.params;
+    mysqlConnection.query('delete from pacientes_alergias where idPacientes = ?', [idPacientes], (err, rows, fields) => {
+        if (!err) {
+            res.status(200).send({ status: 'Paciente ' + idPacientes + ' se borro las alergias ' });
+        } else {
+            res.status(500).send({ message: err })
+        }
+    });
+});
+
 // INSERT una alergias a un paciente
 router.post('/pacientes/:idPacientes/alergias/:idAlergias', (req, res) => {
     const { idPacientes, idAlergias } = req.params;
