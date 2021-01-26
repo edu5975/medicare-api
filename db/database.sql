@@ -497,6 +497,23 @@ insert into medicamentos(nombre, descripcion, costo, foto) values
 ('Lansoprazol','Para controlar el ácido del estómago, se encarga también de disminuir la cantidad de ácido producido en el estómago y se usa para tratar y prevenir las úlceras en este órgano y en el intestino y para controlar el ardor.'
 ,88,'Lansoprazol.png');
 
+insert into medicamentos(nombre, descripcion, costo, foto) values
+('XL-3 ANTIGRIPAL','8 Tabletas Caja Paracetamol 325 MG',24,'Screenshot_17.png'),
+('XL-3 XTRA','Tomar 2 cápsulas cada 6 u 8 horas.',41,'Screenshot_18.png'),
+('Sedalmerck','Indicaciones terapéuticas: Analgésico, antipirético, descongestionante nasal, útil para el alivio del dolor, la fiebre y en las molestias de la gripe y resfriado común; y en afecciones respiratorias como rinitis alérgica, sinusitis y fiebre del heno.',75,'Screenshot_19.png'),
+('Lumboxen','Lumboxen Cutáneo 35 Gel Tubo',50,'Screenshot_20.png'),
+('Querubin gel','El pañal Querubín Gel es exclusivo de Grupo Sahuayo, y es un pañal que tiene un núcleo absorbente y cubierta tipo tela que le permite a tu bebé moverse libremente. Además ahora tiene cintas tipo tela más anchas que le brinda un mejor ajuste al bebé adicionado con Vitamina E y Aloe Vera.',78,'Screenshot_21.png'),
+('Emulgel','Emulgel es una tecnología que ayuda al gel a penetrar profundamente en la piel. Además, la tecnología Emulgel utiliza una combinación exclusiva de un gel y una crema para brindar un efecto refrescante y calmante al aplicarlo sobre la piel.',96,'Screenshot_22.png'),
+('Tabcin Noche','Tabcin Active® te brinda un rápido alivio a síntomas de gripe y tos tales como: Fiebre, dolor de cabeza, congestión nasal, ojos llorosos, cuerpo cortado, secreación nasal',79,'Screenshot_23.png'),
+('','Tabcin Active® te brinda un rápido alivio a síntomas de gripe y tos tales como: Fiebre, dolor de cabeza, congestión nasal, ojos llorosos, cuerpo cortado, secreación nasal',90,'Screenshot_24.png'),
+('Gotadex','Dexametasona / Neomicina   1 / 3.5 mg/ 1 ml   Oftálmico',28,'Screenshot_25.png'),
+('AGRIFEN 10','AGRIFEN ANTIGRIPAL, ayuda a descongestionar naturalmente el pecho y vías respiratorias, disminuyendo las molestias de la tos y el resfriado. ¿Tienes dolor de cabeza, congestión nasal, estornudas y te duele la garganta? O tienes aún más síntomas que te causan molestia, pero ¿no sabes cómo distinguir si se trata de una gripe o un resfriado? Toma nota de los siguientes factores que te ayudarán a diferenciar ambas enfermedades y detectar bien el virus que tienes.',23,'Screenshot_26.png'),
+('MANZANILLA SOPHIA','Manzanilla Sophia, gotas de origen natural para la limpieza y descanso para los ojos.',53,'Screenshot_27.png'),
+('E-400 CÁPSULAS','Antioxidante de grasas. Influye en el metabolismo de ác. nucleicos y en la síntesis de ác. grasos poliénicos. Previene la oxidación de constituyentes celulares esenciales y/o evita la formación de productos tóxicos de oxidación.',160,'Screenshot_28.png'),
+('NEOKAP-LF','Neomicina, antidiarreico, antibacteriano de acción local digestiva; antihiperamonémico, hipolipemiante.',99,'Screenshot_29.png'),
+('Dimenhidrinato','El dimenhidrinato es usado para tratar y prevenir las náuseas, vómitos y mareos causados por viajes. Pertenece a una clase de medicamentos llamados antihistamínicos.',70,'Screenshot_30.png');
+
+
 insert into recetas_medicamentos(idRecetas, idMedicamentos,dosis) values
 (1,1,'algo'),(1,2,'algo'),(1,3,'algo'),(1,4,'algo'),(2,5,'algo'),(2,6,'algo'),(2,7,'algo'),(2,8,'algo');
 
