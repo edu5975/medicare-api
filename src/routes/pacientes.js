@@ -130,11 +130,10 @@ router.put('/pacientes/:id', (req, res) => {
         nacimiento = ?,
         telefono = ?,
         email = ?,
-        user = ?,
-        password = ?
+        user = ?
     where id = ?
   `;
-    mysqlConnection.query(query, [nombres, apellidoPaterno, apellidoMaterno, direccion, municipio, estado, pais, nacimiento, telefono, email, user, password, id], (err, rows, fields) => {
+    mysqlConnection.query(query, [nombres, apellidoPaterno, apellidoMaterno, direccion, municipio, estado, pais, nacimiento, telefono, email, user, id], (err, rows, fields) => {
         if (!err) {
             if (1)
                 res.status(200).send({
@@ -150,8 +149,7 @@ router.put('/pacientes/:id', (req, res) => {
                     nacimiento,
                     telefono,
                     email,
-                    user,
-                    password
+                    user
                 });
             else
                 res.status(404).send({ message: 'Paciente not found' });
