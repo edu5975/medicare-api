@@ -570,6 +570,6 @@ values
 insert into covid(idPaciente, idMedico, estado, fecha) values
 (111,3,'Confirmado',current_timestamp),(112,3,'Sospechoso',current_timestamp);
 
-
-update pacientes set pais = 'Argentina' where pais = 'Angentina'
+select * from medicos
+where 45 in (select idServicios from servicios_medicos where )
 

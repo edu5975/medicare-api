@@ -50,7 +50,7 @@ router.post('/medicos/busqueda', (req, res) => {
                 query += " and "
         }
         if (servicios && estado != "")
-            query += " " + servicios + " in (select idMedicos from servicios_medicos where idMedicos = id)"
+            query += " " + servicios + " in (select idServicios from servicios_medicos where idMedicos = id)"
     }
     console.log(query)
 
